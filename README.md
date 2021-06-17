@@ -31,6 +31,10 @@ Workflow:
  
 ![image](https://user-images.githubusercontent.com/70555752/122136203-b1d62500-cddd-11eb-853a-e24b0946797d.png)
 
+Overnight run times:
+![image](https://user-images.githubusercontent.com/70555752/122448998-14940180-cf41-11eb-88b2-efa5d4bc895f.png)
+
+
  
  
  
