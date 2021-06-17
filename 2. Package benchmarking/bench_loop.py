@@ -2,18 +2,35 @@ import subprocess
 import pandas as pd
 import re
 import pickle
+from datetime import datetime
 
 with open("dep_list.txt", "rb") as fp:   # Unpickling
     dep_list = pickle.load(fp)
 
 timings = pd.DataFrame(columns=["library", "real", "user", "sys"])
+dependencies = pd.DataFrame(columns=["library", "dependencies"])
 
-start = 6
-end = 10
+start = 0
+end = 3
 set_num = 1
+
+timer_index = 1
+t_list = []
+a = datetime.now()
+
 for i in dep_list[start:end]:
 
-    rc = subprocess.call("./benchmarker.sh '%s'" % i, shell=True)
+    if set_num == 1:
+        rc = subprocess.call("./benchmarker.sh %s %s" % (i, 1), shell=True)
+        dep = open("dependencies.txt", "r").read()
+        try:
+            dep_groups = re.search(r"Requires: (.+) Required-by", dep).group(1).split(", ")
+        except:
+            dep_groups = []
+        dependencies = dependencies.append({"library": i, "dependencies": dep_groups}, ignore_index=True)
+
+    else:
+        rc = subprocess.call("./benchmarker.sh %s %s" % (i, 0), shell=True)
 
     timetaken = open("timetaken.txt", "r").read()
     time_groups = re.search(r"real\s([0-9]+)m([0-9]+.[0-9]+)s\suser\s([0-9]+)m([0-9]+.[0-9]+)s\ssys\s([0-9]+)m([0-9]+.[0-9]+)s", timetaken)
@@ -25,5 +42,15 @@ for i in dep_list[start:end]:
 
     timings = timings.append({"library": i, "real": real_t, "user": user_t, "sys": sys_t}, ignore_index=True)
 
+    if timer_index % 50 == 0:
+        t_list.append(str(timer_index) + " " + str(datetime.now() - a))
+    timer_index += 1
+
 print(timings)
 timings.to_csv("pip_benchmarks_" + str(start) + "_" + str(end - 1) + "_" + str(set_num) + ".csv")
+
+print(dependencies)
+dependencies.to_csv("pip_dependencies_" + str(start) + "_" + str(end - 1) + "_" + str(set_num) + ".csv")
+
+print("t_list")
+print(t_list)
