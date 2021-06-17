@@ -20,6 +20,17 @@ Generated files:
 Dropped:
  - `Binder-EDA`: merging tables did not produce
 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+### FACTORS beyond datasets:
+ - [2, 3] Size of each package
+ - [3] Package stats (stars, forks, etc.)
+ - [2] Dependencies of package
+ - [3] Version history
+ - [2] Time to install package
+
+
 ## Part 2: Package benchmarking
 Workflow:
  - Started with `[psuedocode] environment_testing.ipynb`. This contains the command line arguments to build a virtual environment, install a library, and then clear the scene for repetition.
@@ -36,6 +47,5 @@ Overnight run times:
 
 
  
- 
- 
- ## Part 3: 
+## Part 3: Scraping package sites (libraries.io, PYPI)
+Because selenium's webdriver was used, chromedriver.exe is needed for the scraper. Thus, I wrote the scraper locally with `dep_list.txt` as the input list of packages to scrape, and scraped through both libraries.io and PYPI. A CSV is generated with [package stats, version history, and package size], named `[?].csv`, and these are combined later in the notebook to create a final CSV named `[?].csv`.
