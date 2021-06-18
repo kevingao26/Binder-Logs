@@ -1,6 +1,7 @@
 import subprocess
 import pandas as pd
 import re
+import numpy as np
 import pickle
 from datetime import datetime
 
@@ -8,10 +9,10 @@ with open("dep_list.txt", "rb") as fp:   # Unpickling
     dep_list = pickle.load(fp)
 
 timings = pd.DataFrame(columns=["library", "real", "user", "sys"])
-dependencies = pd.DataFrame(columns=["library", "dependencies"])
+dependencies_sizes = pd.DataFrame(columns=["library", "dependencies"])
 
 start = 0
-end = 3
+end = 4
 set_num = 1
 
 timer_index = 1
@@ -27,7 +28,17 @@ for i in dep_list[start:end]:
             dep_groups = re.search(r"Requires: (.+) Required-by", dep).group(1).split(", ")
         except:
             dep_groups = []
-        dependencies = dependencies.append({"library": i, "dependencies": dep_groups}, ignore_index=True)
+
+        pack = open("packsize.txt", "r").read()
+        try:
+            packer_groups = pack.split(i)
+            assert len(packer_groups) > 1
+            package_size = packer_groups[0].split(" ")[-2]
+        except:
+            package_size = np.nan
+
+        dependencies_sizes = dependencies_sizes.append({"library": i, "dependencies": dep_groups, "size": package_size}, ignore_index=True)
+
 
     else:
         rc = subprocess.call("./benchmarker.sh %s %s" % (i, 0), shell=True)
@@ -49,8 +60,9 @@ for i in dep_list[start:end]:
 print(timings)
 timings.to_csv("pip_benchmarks_" + str(start) + "_" + str(end - 1) + "_" + str(set_num) + ".csv")
 
-print(dependencies)
-dependencies.to_csv("pip_dependencies_" + str(start) + "_" + str(end - 1) + "_" + str(set_num) + ".csv")
+if set_num == 1:
+    print(dependencies_sizes)
+    dependencies_sizes.to_csv("pip_dependencies_sizes_" + str(start) + "_" + str(end - 1) + "_" + str(set_num) + ".csv")
 
 print("t_list")
 print(t_list)
