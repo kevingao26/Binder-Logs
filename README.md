@@ -48,4 +48,4 @@ Overnight run times:
 
  
 ## Part 3: Scraping package sites (libraries.io, PYPI)
-Because selenium's webdriver was used, chromedriver.exe is needed for the scraper. Thus, I wrote the scraper locally with `dep_list.txt` as the input list of packages to scrape, and scraped through both libraries.io and PYPI. A CSV is generated with [package stats, version history, and package size], named `[?].csv`, and these are combined later in the notebook to create a final CSV named `[?].csv`.
+Because selenium's webdriver was used, chromedriver.exe is needed for the scraper. Thus, I wrote the scraper locally with `dep_list.txt` as the input list of packages to scrape, and scraped through both libraries.io and PYPI. A CSV is generated with [package stats, version history, and package size], name defined by scraper_(start, end), and these are combined later in the notebook to create a final CSV named `scraper_final.csv`.
