@@ -1,0 +1,1001 @@
+,library,dependencies
+0,matplotlib,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+1,numpy,[]
+2,pandas,"['numpy', 'python-dateutil', 'pytz']"
+3,scipy,['numpy']
+4,ipywidgets,"['traitlets', 'ipython', 'nbformat', 'widgetsnbextension', 'ipykernel']"
+5,seaborn,"['matplotlib', 'pandas', 'numpy', 'scipy']"
+6,voila,"['nbconvert', 'jupyterlab-pygments', 'pygments', 'jupyter-server']"
+7,scikit-learn,"['numpy', 'scipy']"
+8,python-dateutil,['six']
+9,requests,"['chardet', 'urllib3', 'idna', 'certifi']"
+10,six,[]
+11,packaging,['pyparsing']
+12,pyparsing,[]
+13,cycler,['six']
+14,kiwisolver,['setuptools']
+15,ipython,"['setuptools', 'decorator', 'traitlets', 'pygments', 'prompt-toolkit', 'pexpect', 'backports.shutil-get-terminal-size', 'simplegeneric', 'pickleshare', 'pathlib2']"
+16,jupyter,"['qtconsole', 'ipykernel', 'ipywidgets', 'jupyter-console', 'nbconvert', 'notebook']"
+17,plotly,"['retrying', 'six']"
+18,pytz,[]
+19,sklearn,['scikit-learn']
+20,notebook,"['prometheus-client', 'traitlets', 'ipaddress', 'jupyter-core', 'nbformat', 'Send2Trash', 'ipykernel', 'nbconvert', 'terminado', 'jinja2', 'jupyter-client', 'tornado', 'ipython-genutils', 'pyzmq']"
+21,ipykernel,"['jupyter-client', 'traitlets', 'tornado', 'ipython']"
+22,pillow<7,"['jupyter-client', 'traitlets', 'tornado', 'ipython']"
+23,ipython-genutils,[]
+24,nbconvert,"['jupyter-core', 'defusedxml', 'entrypoints', 'mistune', 'traitlets', 'bleach', 'pandocfilters', 'testpath', 'nbformat', 'pygments', 'jinja2']"
+25,decorator,[]
+26,tornado,"['backports-abc', 'singledispatch', 'futures']"
+27,jupyter-core,['traitlets']
+28,jsonschema,"['six', 'functools32', 'setuptools', 'importlib-metadata', 'attrs', 'pyrsistent']"
+29,jupyter-client,"['tornado', 'python-dateutil', 'jupyter-core', 'traitlets', 'pyzmq']"
+30,pickleshare,['pathlib2']
+31,traitlets,"['enum34', 'decorator', 'ipython-genutils', 'six']"
+32,pyzmq,[]
+33,nbformat,"['jupyter-core', 'ipython-genutils', 'traitlets', 'jsonschema']"
+34,backcall,[]
+35,sympy,['mpmath']
+36,wcwidth,['backports.functools-lru-cache']
+37,parso,[]
+38,prompt-toolkit,"['wcwidth', 'six']"
+39,pandocfilters,[]
+40,jedi,['parso']
+41,webencodings,[]
+42,entrypoints,['configparser']
+43,tqdm,[]
+44,MarkupSafe,[]
+45,testpath,[]
+46,tensorflow,"['numpy', 'opt-einsum', 'scipy', 'gast', 'enum34', 'keras-applications', 'astor', 'mock', 'keras-preprocessing', 'termcolor', 'backports.weakref', 'protobuf', 'absl-py', 'functools32', 'six', 'tensorboard', 'wheel', 'wrapt', 'tensorflow-estimator', 'google-pasta', 'grpcio']"
+47,Jinja2,['MarkupSafe']
+48,mistune,[]
+49,certifi,[]
+50,defusedxml,[]
+51,bleach,"['six', 'webencodings', 'packaging']"
+52,attrs,[]
+53,Pygments,[]
+54,prometheus-client,[]
+55,widgetsnbextension,['notebook']
+56,Pillow,[]
+57,statsmodels,[]
+58,pyrsistent,['six']
+59,xlrd,[]
+60,terminado,"['ptyprocess', 'tornado']"
+61,ptyprocess,[]
+62,pexpect,['ptyprocess']
+63,nbinteract,[]
+64,Send2Trash,[]
+65,fastai>=2,[]
+66,urllib3,[]
+67,chardet,[]
+68,idna,[]
+69,networkx,['decorator']
+70,pillow,[]
+71,jupyter-console,"['jupyter-client', 'ipykernel', 'pygments', 'prompt-toolkit', 'ipython']"
+72,jupyterlab,"['subprocess32', 'notebook', 'ipython-genutils', 'jupyterlab-launcher', 'futures']"
+73,ipympl,"['matplotlib', 'ipywidgets', 'ipykernel']"
+74,folium,"['jinja2', 'six', 'numpy', 'branca', 'requests']"
+75,nltk,[]
+76,qtconsole,"['jupyter-core', 'jupyter-client', 'traitlets', 'pyzmq', 'ipykernel', 'ipython-genutils', 'pygments', 'qtpy']"
+77,zipp,['contextlib2']
+78,importlib-metadata,"['contextlib2', 'zipp', 'configparser', 'pathlib2']"
+79,joblib,[]
+80,lxml,[]
+81,bqplot,"['pandas', 'traittypes', 'numpy', 'traitlets', 'ipywidgets']"
+82,beautifulsoup4,['soupsieve']
+83,bokeh,"['python-dateutil', 'tornado', 'numpy', 'PyYAML', 'futures', 'packaging', 'pillow', 'six', 'Jinja2']"
+84,scikit-image,"['matplotlib', 'scipy', 'six', 'pillow', 'networkx', 'cloudpickle', 'PyWavelets']"
+85,graphviz,[]
+86,jupyter-book,[]
+87,IPython,"['setuptools', 'decorator', 'traitlets', 'pygments', 'prompt-toolkit', 'pexpect', 'backports.shutil-get-terminal-size', 'simplegeneric', 'pickleshare', 'pathlib2']"
+88,h5py,"['numpy', 'six']"
+89,bs4,['beautifulsoup4']
+90,cffi,['pycparser']
+91,fastai,[]
+92,appnope,[]
+93,keras,"['h5py', 'scipy', 'pyyaml', 'numpy']"
+94,openpyxl,"['et-xmlfile', 'jdcal']"
+95,pycparser,[]
+96,numpy ,[]
+97,watermark,['ipython']
+98,geopandas,[]
+99,opencv-python,[]
+100,pytest,"['more-itertools', 'packaging', 'importlib-metadata', 'six', 'atomicwrites', 'pluggy', 'funcsigs', 'attrs', 'wcwidth', 'py', 'pathlib2']"
+101,numba,[]
+102,PyYAML,[]
+103,colorama,[]
+104,datetime,"['pytz', 'zope.interface']"
+105,torch,[]
+106,matplotlib ,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+107,altair,"['jsonschema', 'toolz', 'typing', 'pandas', 'entrypoints', 'jinja2', 'six', 'numpy']"
+108,nbgitpuller,"['tornado', 'notebook']"
+109,there,[]
+110,patsy,"['six', 'numpy']"
+111,click,[]
+112,QtPy,[]
+113,imageio,[]
+114,spacy,[]
+115,sphinx-gallery,"['setuptools', 'pillow', 'sphinx', 'matplotlib']"
+116,rise,[]
+117,async-generator,[]
+118,jupyterlab-server,[]
+119,future,[]
+120,wordcloud,"['matplotlib', 'numpy', 'pillow']"
+121,retrying,['six']
+122,astropy,"['numpy', 'pytest']"
+123,toolz,[]
+124,oauthlib,[]
+125,jupyterlab-pygments,['pygments']
+126,tensorboard,"['google-auth', 'requests', 'numpy', 'grpcio', 'google-auth-oauthlib', 'werkzeug', 'absl-py', 'six', 'markdown', 'setuptools', 'protobuf', 'wheel', 'futures']"
+127,Flask,"['click', 'Jinja2', 'Werkzeug', 'itsdangerous']"
+128,ipyleaflet,"['shapely', 'ipywidgets', 'traittypes', 'branca']"
+129,threadpoolctl,[]
+130,torchvision,"['torch', 'numpy', 'six', 'pillow']"
+131,argon2-cffi,"['enum34', 'six', 'cffi']"
+132,json5,[]
+133,psutil,[]
+134,gensim,"['smart-open', 'six', 'scipy', 'numpy']"
+135,geopy,['geographiclib']
+136,requests-oauthlib,"['oauthlib', 'requests']"
+137,Werkzeug,[]
+138,protobuf,['six']
+139,regex,[]
+140,html5lib,"['webencodings', 'six']"
+141,RISE,[]
+142,ipyvolume,"['traittypes', 'ipywebrtc', 'pythreejs', 'Pillow', 'ipywidgets', 'numpy', 'traitlets', 'requests']"
+143,jupytext,"['toml', 'nbformat', 'pyyaml']"
+144,pandas ,"['numpy', 'python-dateutil', 'pytz']"
+145,xgboost,"['numpy', 'scipy']"
+146,scikit_learn,"['numpy', 'scipy']"
+147,more-itertools,['six']
+148,wrapt,[]
+149,wget,[]
+150,termcolor,[]
+151,textblob,[]
+152,cufflinks,"['ipywidgets', 'numpy', 'ipython', 'six', 'setuptools', 'pandas', 'plotly', 'colorlover']"
+153,tabulate,[]
+154,uk_covid19,[]
+155,soupsieve,['backports.functools-lru-cache']
+156,cachetools,[]
+157,fastai2>=0.0.16,[]
+158,jupyter_contrib_nbextensions,"['jupyter-nbextensions-configurator', 'jupyter-core', 'nbconvert', 'jupyter-highlight-selected-word', 'lxml', 'traitlets', 'pyyaml', 'jupyter-contrib-core', 'notebook', 'ipython-genutils', 'jupyter-latex-envs', 'tornado']"
+159,jinja2,['MarkupSafe']
+160,gast,[]
+161,jupyterlab_launcher>=0.5.0,"['jsonschema', 'notebook']"
+162,SQLAlchemy,['importlib-metadata']
+163,pywinpty,[]
+164,Keras,"['h5py', 'scipy', 'pyyaml', 'numpy']"
+165,descartes,['matplotlib']
+166,mpmath,[]
+167,tensorflow-estimator,[]
+168,typing-extensions,['typing']
+169,markupsafe,[]
+170,vdom,"['jsonschema', 'ipython']"
+171,pyasn1,[]
+172,pyarrow,"['six', 'futures', 'numpy', 'enum34']"
+173,datascience,[]
+174,nest-asyncio,[]
+175,nbclient,[]
+176,selenium,['urllib3']
+177,dash,"['Flask', 'dash-core-components', 'dash-renderer', 'dash-html-components', 'plotly', 'dash-table', 'flask-compress', 'future']"
+178,scikit-learn ,"['numpy', 'scipy']"
+179,cryptography,"['ipaddress', 'cffi', 'six', 'enum34']"
+180,scipy ,['numpy']
+181,grpcio,"['six', 'futures', 'enum34']"
+182,pylint,"['backports.functools-lru-cache', 'singledispatch', 'isort', 'configparser', 'astroid', 'six', 'mccabe']"
+183,branca,['jinja2']
+184,absl-py,"['enum34', 'six']"
+185,pygments,[]
+186,traitlets>=4.3.1,"['enum34', 'decorator', 'ipython-genutils', 'six']"
+187,sentencepiece,[]
+188,yfinance,"['multitasking', 'numpy', 'requests', 'lxml', 'pandas']"
+189,pyyaml,[]
+190,rsa,[]
+191,et-xmlfile,[]
+192,Markdown,['setuptools']
+193,jdcal,[]
+194,itsdangerous,[]
+195,jupyter-contrib-nbextensions,"['jupyter-nbextensions-configurator', 'jupyter-core', 'nbconvert', 'jupyter-highlight-selected-word', 'lxml', 'traitlets', 'pyyaml', 'jupyter-contrib-core', 'notebook', 'ipython-genutils', 'jupyter-latex-envs', 'tornado']"
+196,watermark ,['ipython']
+197,send2trash,[]
+198,pyOpenSSL,"['cryptography', 'six']"
+199,xarray,"['pandas', 'numpy']"
+200,jupyter-server,"['traitlets', 'ipaddress', 'jupyter-core', 'nbformat', 'Send2Trash', 'ipykernel', 'jupyter-client', 'terminado', 'jinja2', 'tornado', 'nbconvert', 'ipython-genutils', 'pyzmq', 'prometheus-client']"
+201,thinc,[]
+202,google-auth-oauthlib,"['google-auth', 'requests-oauthlib']"
+203,nbdev>=0.2.12,[]
+204,plotly-express,[]
+205,Click,[]
+206,Cython,[]
+207,qiskit,[]
+208,pyasn1-modules,['pyasn1']
+209,docutils,[]
+210,azure-cognitiveservices-search-imagesearch,"['azure-cognitiveservices-search-nspkg', 'msrestazure', 'azure-common', 'msrest']"
+211,packaging ,['pyparsing']
+212,google-auth,"['pyasn1-modules', 'rsa', 'cachetools', 'setuptools', 'six']"
+213,tables,"['mock', 'numexpr', 'numpy', 'six']"
+214,oauth2client,[]
+215,py,[]
+216,Keras-Preprocessing,"['six', 'numpy']"
+217,gspread,"['google-auth', 'google-auth-oauthlib']"
+218,pyproj,['aenum']
+219,mccabe,[]
+220,holoviews,"['pyviz-comms', 'panel', 'numpy', 'param', 'pandas', 'colorcet']"
+221,tweepy,"['requests-oauthlib', 'requests', 'six']"
+222,dask,[]
+223,vega,[]
+224,fastai2>=0.0.5,[]
+225,numexpr,['numpy']
+226,numpydoc,"['sphinx', 'Jinja2']"
+227,pluggy,['importlib-metadata']
+228,PyQt5,[]
+229,imageio ,[]
+230,docopt,[]
+231,openpyxl ,"['et-xmlfile', 'jdcal']"
+232,opencv-python ,[]
+233,autopep8,"['pycodestyle', 'toml']"
+234,opt-einsum,['numpy']
+235,numpydoc ,"['sphinx', 'Jinja2']"
+236,imagesize ,[]
+237,biopython,[]
+238,wincertstore,[]
+239,notebook ,"['traitlets', 'prometheus-client', 'jupyter-core', 'nbformat', 'Send2Trash', 'ipykernel', 'nbconvert', 'terminado', 'jinja2', 'jupyter-client', 'tornado', 'ipaddress', 'ipython-genutils', 'pyzmq']"
+240,google-pasta,['six']
+241,importlib-metadata ,"['contextlib2', 'zipp', 'configparser', 'pathlib2']"
+242,scikit-image ,"['matplotlib', 'scipy', 'six', 'pillow', 'networkx', 'cloudpickle', 'PyWavelets']"
+243,toml,[]
+244,gunicorn,[]
+245,pip,[]
+246,PySocks,[]
+247,ipyturtle,['ipywidgets']
+248,boto3,"['jmespath', 's3transfer', 'botocore']"
+249,cluster ,[]
+250,llvmlite,[]
+251,flake8,"['typing', 'pyflakes', 'mccabe', 'pycodestyle', 'functools32', 'importlib-metadata', 'enum34', 'configparser']"
+252,pydot,['pyparsing']
+253,isort,"['futures', 'backports.functools-lru-cache']"
+254,kmeans-pytorch ,[]
+255,cloudpickle,[]
+256,carto2gpd,[]
+257,us,['jellyfish']
+258,pandas-datareader,"['pandas', 'lxml', 'requests']"
+259,cython,[]
+260,pandas_datareader,"['pandas', 'lxml', 'requests']"
+261,requests-unixsocket,"['urllib3', 'requests']"
+262,astor,[]
+263,fastcore,[]
+264,vega_datasets,['pandas']
+265,seaborn ,"['matplotlib', 'pandas', 'numpy', 'scipy']"
+266,Keras-Applications,"['h5py', 'numpy']"
+267,jmespath,[]
+268,oauth,[]
+269,plotly-geo,[]
+270,umap-learn,[]
+271,PyWavelets,['numpy']
+272,matplotlib-venn,"['matplotlib', 'numpy', 'scipy']"
+273,dill,[]
+274,botocore,"['jmespath', 'python-dateutil', 'urllib3']"
+275,esri2gpd,[]
+276,astroquery,[]
+277,jupyter>=1.0.0,"['qtconsole', 'ipykernel', 'ipywidgets', 'jupyter-console', 'nbconvert', 'notebook']"
+278,nose,[]
+279,palettable,[]
+280,lazy-object-proxy,[]
+281,shapely,[]
+282,flask,"['click', 'Jinja2', 'Werkzeug', 'itsdangerous']"
+283,plac,[]
+284,panel,"['pyviz-comms', 'markdown', 'pyct', 'bokeh', 'tqdm', 'param']"
+285,murmurhash,[]
+286,pymc3,[]
+287,awscli,"['colorama', 's3transfer', 'rsa', 'botocore', 'PyYAML', 'docutils']"
+288,s3transfer,"['botocore', 'futures']"
+289,preshed,[]
+290,wasabi,[]
+291,astroid,"['singledispatch', 'wrapt', 'six', 'lazy-object-proxy', 'backports.functools-lru-cache', 'enum34']"
+292,cymem,[]
+293,osm2gpd,[]
+294,sphinx,"['alabaster', 'typing', 'snowballstemmer', 'Jinja2', 'packaging', 'requests', 'sphinxcontrib-websupport', 'imagesize', 'Pygments', 'docutils', 'setuptools', 'babel', 'six']"
+295,pycodestyle,[]
+296,netCDF4,[]
+297,fastbook,[]
+298,datashader,[]
+299,quandl,"['pandas', 'requests', 'python-dateutil', 'numpy', 'six', 'inflection', 'more-itertools']"
+300,traittypes,['traitlets']
+301,bash_kernel,['pexpect']
+302,gym,"['cloudpickle', 'numpy', 'enum34', 'six', 'scipy', 'pyglet']"
+303,blis,[]
+304,jupyter-server-proxy,[]
+305,PyQt5-sip,[]
+306,xlwt,[]
+307,nbautoeval,[]
+308,srsly,[]
+309,simplegeneric,[]
+310,black,[]
+311,nbdime,"['backports.functools-lru-cache', 'GitPython', 'requests', 'nbformat', 'backports.shutil-which', 'notebook', 'colorama', 'six', 'jinja2', 'pygments', 'tornado']"
+312,ipython-sql,[]
+313,osmnx,[]
+314,keras-preprocessing,"['six', 'numpy']"
+315,ipycanvas,[]
+316,nglview,"['ipywidgets', 'numpy']"
+317,simplejson,[]
+318,jupyter-contrib-core,"['setuptools', 'jupyter-core', 'tornado', 'traitlets', 'notebook']"
+319,jupyter-nbextensions-configurator,"['jupyter-core', 'pyyaml', 'jupyter-contrib-core', 'notebook', 'traitlets', 'tornado']"
+320,numpy>=1.15,[]
+321,appdirs,[]
+322,nibabel,"['six', 'numpy', 'bz2file']"
+323,tensorboard-plugin-wit,[]
+324,typed-ast,[]
+325,display,[]
+326,nbsphinx,"['nbformat', 'jinja2', 'docutils', 'sphinx', 'traitlets', 'nbconvert']"
+327,appmode,['notebook']
+328,catalogue,['importlib-metadata']
+329,asn1crypto,[]
+330,sortedcontainers,[]
+331,markdown,['setuptools']
+332,wheel,[]
+333,astunparse,"['wheel', 'six']"
+334,pmdarima,[]
+335,nilearn,['nibabel']
+336,msgpack,[]
+337,Shapely,[]
+338,fbprophet,[]
+339,missingno,"['seaborn', 'matplotlib', 'numpy', 'scipy']"
+340,opencv-contrib-python,['numpy']
+341,dateparser,[]
+342,arviz,[]
+343,rasterio,"['enum34', 'attrs', 'snuggs', 'click-plugins', 'click', 'cligj', 'affine', 'numpy']"
+344,scikit-posthocs,[]
+345,ghp-import,['python-dateutil']
+346,ipywidgets ,"['traitlets', 'ipython', 'nbformat', 'widgetsnbextension', 'ipykernel']"
+347,fastai>=0.0.16,[]
+348,tensorflow-hub,"['protobuf', 'numpy']"
+349,olefile,[]
+350,tifffile,[]
+351,ipython ,"['setuptools', 'decorator', 'traitlets', 'pygments', 'prompt-toolkit', 'pexpect', 'backports.shutil-get-terminal-size', 'simplegeneric', 'pickleshare', 'pathlib2']"
+352,jupyter-offlinenotebook,['notebook']
+353,pillow>=7.1.0,[]
+354,seaborn>=0.9.0,"['matplotlib', 'pandas', 'numpy', 'scipy']"
+355,ply,[]
+356,ipysheet,['ipywidgets']
+357,sqlalchemy,['importlib-metadata']
+358,google-api-python-client,"['httplib2', 'six', 'google-auth', 'uritemplate', 'google-api-core', 'google-auth-httplib2']"
+359,futures,[]
+360,pathlib2,"['scandir', 'six']"
+361,webdriver_manager,"['configparser', 'requests', 'crayons']"
+362,pyLDAvis,[]
+363,ruamel.yaml,"['ruamel.ordereddict', 'ruamel.yaml.clib']"
+364,shap,[]
+365,pyqt5-sip,[]
+366,jupyter_client,"['python-dateutil', 'tornado', 'jupyter-core', 'traitlets', 'pyzmq']"
+367,fastai>=2.0.0,[]
+368,mysql-connector-python,['protobuf']
+369,setuptools,[]
+370,dash-core-components,[]
+371,atomicwrites,[]
+372,dash-html-components,[]
+373,oscovida,[]
+374,ipdb,"['setuptools', 'ipython', 'toml', 'decorator']"
+375,lightgbm,[]
+376,dash-renderer,[]
+377,jupyter-latex-envs,"['notebook', 'jupyter-core', 'nbconvert', 'traitlets', 'ipython']"
+378,jupyter-highlight-selected-word,[]
+379,pyflakes,[]
+380,munch,['six']
+381,plotnine,[]
+382,pyqtwebengine,[]
+383,qgrid,"['ipywidgets', 'pandas', 'notebook']"
+384,cligj,['click']
+385,pathlib,[]
+386,voila-material,[]
+387,backports.functools-lru-cache,[]
+388,boto,[]
+389,fiona,[]
+390,imagesize,[]
+391,transformers,[]
+392,scipy>=1.0.0,['numpy']
+393,fsspec,[]
+394,singledispatch,['six']
+395,click-plugins,['click']
+396,distributed,"['sortedcontainers', 'singledispatch', 'tblib', 'msgpack', 'pyyaml', 'six', 'psutil', 'futures', 'toolz', 'cloudpickle', 'tornado', 'zict', 'click', 'dask']"
+397,pandas-profiling,[]
+398,dash-table,[]
+399,snowballstemmer,[]
+400,quantstats,[]
+401,tensorflow-datasets,"['absl-py', 'psutil', 'functools32', 'protobuf', 'dill', 'bz2file', 'tqdm', 'attrs', 'requests', 'termcolor', 'wrapt', 'promise', 'six', 'tensorflow-metadata', 'futures', 'numpy', 'future', 'enum34']"
+402,pywavelets,['numpy']
+403,uproot,"['setuptools', 'numpy']"
+404,corner,"['setuptools', 'wheel', 'setuptools-scm', 'matplotlib']"
+405,ortools,"['six', 'protobuf']"
+406,quantecon,[]
+407,jupyter-panel-proxy,[]
+408,tweepy ,"['requests-oauthlib', 'requests', 'six']"
+409,ruamel.yaml.clib,[]
+410,empiricaldist,[]
+411,werkzeug,[]
+412,tensorflow-probability,[]
+413,"wasabi>=0.2.1,<1.1.0",[]
+414,python-editor,[]
+415,metakernel,"['ipykernel', 'pexpect']"
+416,xlsxwriter,[]
+417,numbagg,[]
+418,tzlocal,['pytz']
+419,tsfresh,[]
+420,google-auth-httplib2,"['google-auth', 'six', 'httplib2']"
+421,brotlipy,"['enum34', 'cffi']"
+422,PyQtWebEngine,[]
+423,nodejs,['optional-django']
+424,pymongo,[]
+425,urlextract,"['uritools', 'appdirs', 'idna', 'filelock']"
+426,mapclassify,[]
+427,geojson,[]
+428,pygame,[]
+429,ipywidgets>=7.5.1,"['traitlets', 'ipython', 'nbformat', 'widgetsnbextension', 'ipykernel']"
+430,kaleido,['pathlib']
+431,glob2,[]
+432,matplotlib>=2.0.0,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+433,pystan,"['numpy', 'Cython']"
+434,tensorflow-addons,['tensorflow']
+435,keplergl,[]
+436,numpy>=1.14.1,[]
+437,sktime,[]
+438,Babel,['pytz']
+439,hvplot,"['bokeh', 'pandas', 'numpy', 'holoviews', 'colorcet']"
+440,smmap,[]
+441,mock,"['funcsigs', 'six']"
+442,pytest-cov,"['coverage', 'toml', 'pytest']"
+443,gitdb,['smmap']
+444,Sphinx,"['alabaster', 'typing', 'snowballstemmer', 'Jinja2', 'packaging', 'requests', 'sphinxcontrib-websupport', 'imagesize', 'Pygments', 'docutils', 'setuptools', 'babel', 'six']"
+445,vpython,[]
+446,Mako,['MarkupSafe']
+447,mlxtend,[]
+448,tensorflow-serving-api,[]
+449,pyshp,[]
+450,tblib,[]
+451,blinker,[]
+452,alembic,"['SQLAlchemy', 'python-dateutil', 'python-editor', 'Mako']"
+453,jupyter-dash,[]
+454,keras-applications,"['h5py', 'numpy']"
+455,imutils,[]
+456,jupyterhub,[]
+457,nltk ,[]
+458,simpy,[]
+459,ase,[]
+460,pydotplus,['pyparsing']
+461,netcdf4,[]
+462,ipywidgets>=7.5,"['traitlets', 'ipython', 'nbformat', 'widgetsnbextension', 'ipykernel']"
+463,alabaster,[]
+464,cobra,[]
+465,partd,"['toolz', 'locket']"
+466,scikit-learn>=0.19.0,"['numpy', 'scipy']"
+467,jupyter-book>=0.7.0b,[]
+468,pandas-datareader>=0.6.0,"['pandas', 'lxml', 'requests']"
+469,psycopg2,[]
+470,filelock,[]
+471,python-igraph,[]
+472,smart-open,"['boto', 'requests', 'boto3']"
+473,voila-gridstack,[]
+474,fluentpy,[]
+475,obspy,[]
+476,pycurl,[]
+477,scikit-image>=0.16.1,"['matplotlib', 'scipy', 'six', 'pillow', 'networkx', 'cloudpickle', 'PyWavelets']"
+478,ujson,[]
+479,pyroutelib3,[]
+480,ipython>=5.5.0,"['setuptools', 'decorator', 'traitlets', 'pygments', 'prompt-toolkit', 'pexpect', 'backports.shutil-get-terminal-size', 'simplegeneric', 'pickleshare', 'pathlib2']"
+481,ipythonblocks,"['requests', 'ipython', 'notebook']"
+482,emcee,['numpy']
+483,jupyterthemes,"['matplotlib', 'lesscpy', 'jupyter-core', 'ipython', 'notebook']"
+484,zict,['heapdict']
+485,sympy ,['mpmath']
+486,GitPython,['gitdb2']
+487,fastai2,[]
+488,XlsxWriter,[]
+489,aiohttp,[]
+490,gmplot,[]
+491,pint,['funcsigs']
+492,py ,[]
+493,healpy,"['numpy', 'matplotlib', 'scipy', 'six', 'astropy']"
+494,python-json-logger,[]
+495,sphinxcontrib-bibtex,[]
+496,fastprogress,[]
+497,nteract-on-jupyter,['notebook']
+498,voila>=0.1.8,"['nbconvert', 'jupyterlab-pygments', 'pygments', 'jupyter-server']"
+499,rdflib,"['isodate', 'six', 'pyparsing']"
+500,ruamel-yaml,"['ruamel.ordereddict', 'ruamel.yaml.clib']"
+501,Fiona,[]
+502,matplotlib>=3.2,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+503,Flask-Compress,"['brotli', 'flask']"
+504,nbval,"['nbformat', 'ipykernel', 'six', 'pytest', 'jupyter-client', 'coverage']"
+505,locket,[]
+506,fastai>=0.0.11,[]
+507,configparser,[]
+508,control,"['matplotlib', 'numpy', 'scipy']"
+509,fastai2>=0.0.11,[]
+510,torchviz,"['graphviz', 'torch']"
+511,kaggle,"['python-slugify', 'certifi', 'requests', 'urllib3', 'six', 'python-dateutil', 'tqdm']"
+512,jupyter_dash,[]
+513,cytoolz,[]
+514,pamela,[]
+515,meshio,['numpy']
+516,librosa,[]
+517,qcodes,[]
+518,catboost,"['graphviz', 'matplotlib', 'six', 'pandas', 'numpy', 'plotly', 'enum34', 'scipy']"
+519,python-louvain,"['networkx', 'numpy']"
+520,sphinx-thebe,[]
+521,PyJWT,[]
+522,pep8,[]
+523,mkdocs,"['Jinja2', 'PyYAML', 'livereload', 'click', 'Markdown', 'tornado']"
+524,ipyvuetify,['ipyvue']
+525,virtualenv,"['pathlib2', 'importlib-metadata', 'importlib-resources', 'six', 'appdirs', 'distlib', 'filelock']"
+526,matplotlib>=3.0,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+527,lets-plot,[]
+528,pytesseract,['Pillow']
+529,xmltodict,[]
+530,coverage,[]
+531,promise,"['typing', 'six']"
+532,pycosat,[]
+533,coffea,[]
+534,ipython_genutils,[]
+535,altair-latimes,[]
+536,theano,"['six', 'scipy', 'numpy']"
+537,pyglet,[]
+538,python-dotenv,['typing']
+539,holidays,[]
+540,typing,[]
+541,contextily,[]
+542,isodate,['six']
+543,sqlparse,[]
+544,pathspec,[]
+545,subprocess32,[]
+546,cartoframes,"['appdirs', 'tqdm', 'carto', 'unidecode', 'shapely', 'pandas', 'IPython', 'jinja2', 'webcolors']"
+547,mpld3,"['matplotlib', 'jinja2']"
+548,pkginfo,[]
+549,gitpython,['gitdb2']
+550,colour,[]
+551,ffmpeg,[]
+552,tfx,[]
+553,ffmpeg-python,['future']
+554,colorlover,[]
+555,pingouin,[]
+556,cowpoke,[]
+557,sphinxcontrib-serializinghtml,[]
+558,keyring,"['secretstorage', 'entrypoints']"
+559,mplhep,"['packaging', 'requests', 'numpy', 'scipy', 'matplotlib']"
+560,backports-abc,[]
+561,sphinxcontrib-devhelp,[]
+562,sphinxcontrib-htmlhelp,[]
+563,MDAnalysis,[]
+564,sphinxcontrib-applehelp,[]
+565,sphinxcontrib-jsmath,[]
+566,autograd,"['future', 'numpy']"
+567,sphinxcontrib-qthelp,[]
+568,ftfy,[]
+569,colormath,"['networkx', 'numpy']"
+570,pandas>=0.23.4,"['numpy', 'python-dateutil', 'pytz']"
+571,Flask-RESTful,"['Flask', 'aniso8601', 'pytz', 'six']"
+572,yapf,[]
+573,voila-vuetify,[]
+574,voila-hover,['voila']
+575,tf-agents,[]
+576,sphinx_rtd_theme,"['docutils', 'sphinx']"
+577,wordcloud ,"['matplotlib', 'numpy', 'pillow']"
+578,mobilechelonian,"['ipywidgets', 'IPython']"
+579,param,[]
+580,torchvision>=0.7.0,"['torch', 'numpy', 'six', 'pillow']"
+581,zope.interface,['setuptools']
+582,wand,[]
+583,jupyter_core,['traitlets']
+584,cmdstanpy,[]
+585,scikit.learn,"['numpy', 'scipy']"
+586,scipy>=1.4.1,['numpy']
+587,intermine,[]
+588,tensorflow-gpu,"['numpy', 'opt-einsum', 'mock', 'gast', 'enum34', 'keras-applications', 'astor', 'scipy', 'keras-preprocessing', 'termcolor', 'backports.weakref', 'protobuf', 'absl-py', 'functools32', 'six', 'tensorboard', 'wheel', 'wrapt', 'tensorflow-estimator', 'google-pasta', 'grpcio']"
+589,prompt_toolkit,"['wcwidth', 'six']"
+590,arrow,"['backports.functools-lru-cache', 'python-dateutil']"
+591,chart-studio,"['plotly', 'six', 'requests', 'retrying']"
+592,jupyter_console,"['jupyter-client', 'ipykernel', 'pygments', 'prompt-toolkit', 'ipython']"
+593,tensorflow-metadata,"['googleapis-common-protos', 'protobuf']"
+594,IPython ,"['setuptools', 'decorator', 'traitlets', 'pygments', 'prompt-toolkit', 'pexpect', 'backports.shutil-get-terminal-size', 'simplegeneric', 'pickleshare', 'pathlib2']"
+595,shioaji,[]
+596,prometheus_client,[]
+597,pyfaidx,"['setuptools', 'six']"
+598,pyspark,['py4j']
+599,vtk ,[]
+600,pulp,['amply']
+601,streamlit,"['click', 'astor', 'blinker', 'botocore', 'protobuf', 'boto3', 'validators', 'pydeck', 'python-dateutil', 'base58', 'pandas', 'toml', 'tornado', 'altair', 'pillow', 'enum-compat', 'tzlocal', 'future', 'numpy', 'watchdog', 'requests']"
+602,plotly.express,[]
+603,imbalanced-learn,[]
+604,vega-datasets,['pandas']
+605,Quandl,"['pandas', 'requests', 'python-dateutil', 'numpy', 'six', 'inflection', 'more-itertools']"
+606,geographiclib,[]
+607,nbgrader,"['six', 'traitlets', 'jupyter', 'requests', 'nbformat', 'alembic', 'notebook', 'jsonschema', 'rapidfuzz', 'jupyter-core', 'python-dateutil', 'sqlalchemy', 'jupyter-client', 'tornado', 'nbconvert']"
+608,category-encoders,[]
+609,setuptools-git,[]
+610,ipython-genutils ,[]
+611,gql,"['graphql-core', 'requests', 'promise', 'six']"
+612,Pandas,"['numpy', 'python-dateutil', 'pytz']"
+613,cvxopt,[]
+614,Biopython,[]
+615,voila-vuetify>=0.0.1a6,[]
+616,prettytable,"['setuptools', 'wcwidth']"
+617,dash_html_components,[]
+618,music21,[]
+619,numpy>=1.14.5,[]
+620,imblearn,[]
+621,cvxpy,[]
+622,ipyvuetify>=0.1.9,['ipyvue']
+623,dash_core_components,[]
+624,python-slugify,['text-unidecode']
+625,pymatgen,[]
+626,jupyter>=1.0,"['qtconsole', 'ipykernel', 'ipywidgets', 'jupyter-console', 'nbconvert', 'notebook']"
+627,mkdocs-material,[]
+628,datapane,[]
+629,unicodecsv,[]
+630,pprint,[]
+631,rebound,[]
+632,py4j,[]
+633,nbdev,[]
+634,matplotlib_venn,"['matplotlib', 'numpy', 'scipy']"
+635,pathtools,[]
+636,backports.shutil-get-terminal-size,[]
+637,win-inet-pton,[]
+638,jaxlib,"['absl-py', 'six', 'numpy', 'scipy', 'protobuf']"
+639,greenlet,[]
+640,py-cpuinfo,[]
+641,certipy,['pyopenssl']
+642,plotly ,"['retrying', 'six']"
+643,path,[]
+644,json5 ,[]
+645,Flask-SQLAlchemy,"['SQLAlchemy', 'Flask']"
+646,texthero,[]
+647,pandas_profiling,[]
+648,jupyter-telemetry,[]
+649,googleapis-common-protos,['protobuf']
+650,paramiko,"['cryptography', 'pynacl', 'bcrypt']"
+651,SPARQLWrapper,['rdflib']
+652,filterpy,"['matplotlib', 'numpy', 'scipy']"
+653,validators,"['six', 'decorator']"
+654,aniso8601,[]
+655,multipledispatch,['six']
+656,Theano,"['six', 'scipy', 'numpy']"
+657,nbresuse,"['psutil', 'prometheus-client', 'notebook']"
+658,convertdate,"['pytz', 'pymeeus']"
+659,cmocean,[]
+660,clustergrammer2,['ipywidgets']
+661,langdetect,['six']
+662,pyvis,"['jsonpickle', 'jinja2', 'networkx', 'ipython']"
+663,mip,[]
+664,xlrd >= 1.0.0,[]
+665,Pillow ,[]
+666,ephem,[]
+667,multidict,[]
+668,rope,[]
+669,xlrd ,[]
+670,numpy>=1.19.2,[]
+671,PyPDF2,[]
+672,textmining3,['Click']
+673,httplib2,['pyparsing']
+674,natsort,[]
+675,lz4,['future']
+676,nsepy,"['beautifulsoup4', 'pandas', 'lxml', 'six', 'numpy', 'click', 'requests']"
+677,ipy_table,[]
+678,multiprocess,['dill']
+679,panel ,"['pyviz-comms', 'markdown', 'pyct', 'bokeh', 'tqdm', 'param']"
+680,solidspy,"['matplotlib', 'meshio', 'numpy', 'scipy', 'easygui']"
+681,yarl,[]
+682,bt,[]
+683,text-unidecode,[]
+684,Interactive,[]
+685,qtpy,[]
+686,statsmodels ,[]
+687,genson,[]
+688,mmh3,[]
+689,print-function,[]
+690,nbserverproxy,['notebook']
+691,lmfit,"['six', 'uncertainties', 'scipy', 'asteval', 'numpy']"
+692,interact,[]
+693,spacy ,[]
+694,pyevtk,['numpy']
+695,gffutils,"['simplejson', 'argh', 'six', 'argcomplete', 'pyfaidx']"
+696,atari-py,[]
+697,zarr,[]
+698,PyMySQL,[]
+699,okpy,[]
+700,recommonmark,"['commonmark', 'sphinx', 'docutils']"
+701,pygal,[]
+702,async-timeout,[]
+703,contextlib2,[]
+704,tornado>=6.1.0,"['backports-abc', 'singledispatch', 'futures']"
+705,islpy,[]
+706,cftime,[]
+707,blitzdb,['six']
+708,statistics,['docutils']
+709,pytest-openfiles,"['pytest', 'psutil']"
+710,sphinx-book-theme,[]
+711,pickle-mixin,[]
+712,HeapDict,[]
+713,watchdog,['pathtools']
+714,ffn,"['tabulate', 'pandas', 'decorator', 'scipy', 'numpy', 'pandas-datareader', 'scikit-learn', 'future', 'matplotlib']"
+715,import-ipynb,[]
+716,pybids,"['nibabel', 'sqlalchemy', 'num2words', 'bids-validator', 'patsy', 'numpy', 'scipy', 'pandas']"
+717,pyqtchart,[]
+718,DateTime,"['pytz', 'zope.interface']"
+719,pyross,[]
+720,mkl-fft,['intel-numpy']
+721,adjustText,"['matplotlib', 'numpy']"
+722,mysql,[]
+723,intervaltree,['sortedcontainers']
+724,gevent,"['setuptools', 'zope.event', 'zope.interface', 'greenlet']"
+725,websocket-client,['six']
+726,htmlmin,[]
+727,sklearn ,['scikit-learn']
+728,pycrypto,[]
+729,googledrivedownloader,[]
+730,Ipykernel ,"['jupyter-client', 'traitlets', 'tornado', 'ipython']"
+731,plantcv,[]
+732,numpy>=1.18.5,[]
+733,textblob ,[]
+734,jax,[]
+735,mkl-service,[]
+736,QtAwesome,"['six', 'qtpy']"
+737,cached-property,[]
+738,jupyterlab-git,[]
+739,fuzzywuzzy,[]
+740,scipy>=1.1.0,['numpy']
+741,matplotlib>=3.3.2,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+742,jieba,[]
+743,vaex,[]
+744,line_profiler,[]
+745,pycountry,[]
+746,tabpy-client,"['decorator', 'jsonschema', 'requests', 'cloudpickle', 'python-dateutil', 'genson']"
+747,Tornado-JSON,"['tornado', 'jsonschema']"
+748,tabpy,[]
+749,sphinx_gallery,"['setuptools', 'pillow', 'sphinx', 'matplotlib']"
+750,jupyterlab-widgets,['jupyterlab']
+751,mplcursors,[]
+752,websockets,[]
+753,markdown-it-py,[]
+754,fastdtw,['numpy']
+755,importlib-resources,"['contextlib2', 'typing', 'singledispatch', 'zipp', 'pathlib2']"
+756,tabpy-server,"['decorator', 'jsonschema', 'Tornado-JSON', 'tabpy-client', 'cloudpickle', 'python-dateutil', 'genson', 'futures', 'simplejson', 'numpy', 'future', 'tornado', 'requests']"
+757,conda,[]
+758,mkl-random,['intel-numpy']
+759,soundfile,['cffi']
+760,Unidecode,[]
+761,requests-toolbelt,['requests']
+762,pymdown-extensions,[]
+763,sphinxcontrib-websupport,[]
+764,BondGraphTools,[]
+765,korean-lunar-calendar,[]
+766,particle,"['attrs', 'enum34', 'hepunits', 'typing', 'importlib-resources']"
+767,panda,"['setuptools', 'requests']"
+768,wandb,"['docker-pycreds', 'enum34', 'protobuf', 'promise', 'requests', 'sentry-sdk', 'subprocess32', 'six', 'shortuuid', 'typing', 'Click', 'configparser', 'psutil', 'pathtools', 'PyYAML', 'python-dateutil', 'GitPython']"
+769,pydicom,[]
+770,moviepy,"['proglog', 'requests', 'numpy', 'imageio', 'tqdm', 'decorator']"
+771,jupyterlab_latex,[]
+772,mkl,"['intel-openmp', 'tbb']"
+773,cycler>=0.10.0,['six']
+774,graphql-core<3.0.0,['six']
+775,econml,[]
+776,rio-toa,"['rio-mucho', 'click', 'rasterio']"
+777,mlflow,"['databricks-cli', 'querystring-parser', 'simplejson', 'pyyaml', 'gitpython', 'Flask', 'prometheus-flask-exporter', 'pandas', 'docker', 'requests', 'protobuf', 'numpy', 'sqlalchemy', 'click', 'gorilla', 'cloudpickle', 'python-dateutil', 'waitress', 'sqlparse', 'alembic', 'entrypoints', 'six', 'gunicorn']"
+778,svgpathtools,"['numpy', 'svgwrite']"
+779,uproot4,[]
+780,matplotlib>=3.1.1,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+781,Django,['pytz']
+782,phik,[]
+783,Bottleneck,[]
+784,pyviz,[]
+785,ipykernel ,"['jupyter-client', 'traitlets', 'tornado', 'ipython']"
+786,numpy>=1.13.1,[]
+787,pygraphviz,[]
+788,chart_studio,"['plotly', 'six', 'requests', 'retrying']"
+789,argparse,[]
+790,mypy-extensions,['typing']
+791,deap,['numpy']
+792,tensorboard-plugin-profile,"['werkzeug', 'six', 'setuptools', 'gviz-api', 'protobuf']"
+793,libarchive-c,[]
+794,tensorflow ,"['numpy', 'opt-einsum', 'mock', 'gast', 'enum34', 'keras-applications', 'astor', 'scipy', 'keras-preprocessing', 'termcolor', 'backports.weakref', 'protobuf', 'absl-py', 'functools32', 'six', 'tensorboard', 'wheel', 'wrapt', 'tensorflow-estimator', 'google-pasta', 'grpcio']"
+795,pypng,[]
+796,opencv-python-headless,[]
+797,neurokit2,"['matplotlib', 'pandas', 'numpy', 'scipy', 'scikit-learn']"
+798,libpysal,[]
+799,pydocstyle,"['configparser', 'six', 'snowballstemmer']"
+800,linearmodels,[]
+801,confuse,['pyyaml']
+802,xxhash,[]
+803,fastcache,[]
+804,pytest-remotedata,"['pytest', 'six']"
+805,myst_nb,[]
+806,casadi,[]
+807,pbr,[]
+808,dash-daq,['dash']
+809,ferretmagic,[]
+810,hyperopt,"['future', 'cloudpickle', 'six', 'tqdm', 'numpy', 'scipy', 'networkx']"
+811,httpimport,[]
+812,scipy>=0.15.1,['numpy']
+813,geemap,[]
+814,awkward1,[]
+815,googlemaps,['requests']
+816,pytest-astropy,"['pytest-doctestplus', 'pytest-openfiles', 'pytest-arraydiff', 'pytest-astropy-header', 'hypothesis', 'pytest', 'pytest-remotedata']"
+817,chord,[]
+818,sigpy,[]
+819,eli5,"['graphviz', 'typing', 'tabulate', 'scikit-learn', 'singledispatch', 'numpy', 'attrs', 'jinja2', 'six', 'scipy']"
+820,vtk,[]
+821,pelican,[]
+822,msticpy>=0.6.0,[]
+823,sounddevice,['CFFI']
+824,jupyterlab-launcher,"['jsonschema', 'notebook']"
+825,pytest-doctestplus,"['pytest', 'six']"
+826,fastprogress>=0.1.22,[]
+827,py3dmol,[]
+828,pillow>=6.2.2,[]
+829,lxml>=4.2,[]
+830,openpyxl>=2.5,"['et-xmlfile', 'jdcal']"
+831,xlrd>=1.1,[]
+832,pycryptodome,[]
+833,pytest-arraydiff,"['pytest', 'numpy', 'six']"
+834,efficientnet,[]
+835,ipywebrtc,[]
+836,image,"['django', 'pillow', 'six']"
+837,Quandl>=3.4.1,"['pandas', 'requests', 'python-dateutil', 'numpy', 'six', 'inflection', 'more-itertools']"
+838,jupyter ,"['qtconsole', 'ipykernel', 'ipywidgets', 'jupyter-console', 'nbconvert', 'notebook']"
+839,gensim ,"['smart-open', 'six', 'scipy', 'numpy']"
+840,gym[atari],[]
+841,python-levenshtein,[]
+842,graphviz ,[]
+843,kwant,[]
+844,import_ipynb,[]
+845,celluloid,[]
+846,powerlaw,"['matplotlib', 'numpy', 'scipy', 'mpmath']"
+847,sphinx_copybutton,[]
+848,pyod,[]
+849,distlib,[]
+850,ntlm-auth,[]
+851,requests-ntlm,"['cryptography', 'requests', 'ntlm-auth']"
+852,annoy,[]
+853,prince,"['matplotlib', 'pandas', 'numpy', 'scipy', 'fbpca']"
+854,geocoder,"['ratelim', 'click', 'future', 'requests', 'six']"
+855,scipy>=1.5.2,['numpy']
+856,mknotebooks,[]
+857,pyreadline,[]
+858,dataclasses,[]
+859,torch>=1.6.0,[]
+860,mocodo-magic,"['mocodo', 'ipython']"
+861,matplotlib>=3.2.2,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+862,google-api-core,"['protobuf', 'futures', 'packaging', 'setuptools', 'six', 'requests', 'googleapis-common-protos', 'pytz', 'google-auth']"
+863,google-auth ,"['pyasn1-modules', 'rsa', 'cachetools', 'setuptools', 'six']"
+864,pip ,[]
+865,pytrends,[]
+866,jupyter-tensorboard,['notebook']
+867,krotov,[]
+868,pandas>=1.1.0,"['numpy', 'python-dateutil', 'pytz']"
+869,rpy2,[]
+870,bitarray,[]
+871,optional-django,[]
+872,tensorflow-transform,[]
+873,pyxlsb,[]
+874,voila-osscar-template,[]
+875,python-twitter ,"['requests-oauthlib', 'future', 'requests']"
+876,cclib,"['periodictable', 'packaging', 'numpy', 'scipy']"
+877,pymarc,['six']
+878,mplstereonet,"['numpy', 'matplotlib']"
+879,Jinja2>=2.10.1,['MarkupSafe']
+880,memory_profiler,['psutil']
+881,spyder,[]
+882,yellowbrick,"['scipy', 'numpy', 'scikit-learn', 'cycler', 'matplotlib']"
+883,pylatexenc,[]
+884,Markdown ,['setuptools']
+885,pipreqs,"['yarg', 'docopt']"
+886,tensorboard ,"['google-auth', 'requests', 'numpy', 'grpcio', 'google-auth-oauthlib', 'werkzeug', 'absl-py', 'six', 'markdown', 'setuptools', 'protobuf', 'wheel', 'futures']"
+887,Flask ,"['click', 'Jinja2', 'Werkzeug', 'itsdangerous']"
+888,sortedcollections,[]
+889,pyvo,"['six', 'mimeparse', 'astropy', 'requests']"
+890,pydeck,"['ipywidgets', 'numpy', 'traitlets', 'jinja2', 'ipython']"
+891,scikit-learn>=0.18,"['numpy', 'scipy']"
+892,mne,"['scipy', 'numpy']"
+893,voila-materialscloud-template,[]
+894,svgwrite,['pyparsing']
+895,pybind11,[]
+896,os-win,"['oslo.concurrency', 'oslo.i18n', 'Babel', 'pbr', 'oslo.log', 'oslo.config', 'oslo.utils', 'eventlet']"
+897,matplotlib>=3.3.1,"['python-dateutil', 'kiwisolver', 'numpy', 'six', 'cycler', 'pyparsing', 'pytz', 'backports.functools-lru-cache', 'subprocess32']"
+898,pybtex,"['PyYAML', 'latexcodec', 'six']"
+899,torchtext,[]
+900,uritemplate,[]
+901,skyfield,"['certifi', 'jplephem', 'numpy', 'sgp4']"
+902,numpy>=1.1,[]
+903,numpy>=1.15.4,[]
+904,pandoc,['ply']
+905,django,['pytz']
+906,scipy>=1.3.1,['numpy']
+907,cssselect,[]
+908,tflearn,"['Pillow', 'numpy', 'six']"
+909,myst-parser,[]
+910,calysto_bash,"['ipykernel', 'jupyter-client', 'metakernel']"
+911,xlutils,"['xlwt', 'xlrd']"
+912,psycopg2-binary,[]
+913,pysort,[]
+914,qiskit-aqua,[]
+915,pywin32,[]
+916,lime,[]
+917,rpy2 ,[]
+918,arcgis,[]
+919,papermill,"['nbconvert', 'tqdm', 'requests', 'nbformat', 'tenacity', 'futures', 'click', 'pyyaml', 'entrypoints', 'ansiwrap', 'six', 'jupyter-client', 'backports.tempfile', 'future']"
+920,fancyimpute,[]
+921,mypy,[]
+922,lithops,[]
+923,rioxarray,"['scipy', 'rasterio', 'xarray']"
+924,pip-tools,"['click', 'pip']"
+925,NRSur7dq2,[]
+926,heapdict,[]
+927,jplephem,['numpy']
+928,yarg,['requests']
+929,scipy>=1.2,['numpy']
+930,enum34,[]
+931,imjoy>=0.10.0,[]
+932,dash-bootstrap-components,['dash']
+933,pandas>=0.23,"['numpy', 'python-dateutil', 'pytz']"
+934,pandas>=0.19,"['numpy', 'python-dateutil', 'pytz']"
+935,backports.tempfile,['backports.weakref']
+936,fastcluster,['numpy']
+937,chembl_webresource_client,"['requests', 'easydict', 'urllib3', 'requests-cache']"
+938,ambiance,[]
+939,pyhf,"['click', 'pyyaml', 'six', 'jsonpatch', 'tqdm', 'scipy', 'jsonschema']"
+940,biopandas,"['setuptools', 'pandas', 'numpy']"
+941,pypdb,['requests']
+942,tangled-up-in-unicode,[]
+943,progressbar2,"['six', 'python-utils']"
+944,backports.weakref,[]
+945,tensorflow-model-analysis,[]
+946,requests>=2.23.0,"['chardet', 'urllib3', 'idna', 'certifi']"
+947,scikit-plot,"['scikit-learn', 'scipy', 'joblib', 'matplotlib']"
+948,mat73,"['numpy', 'h5py']"
+949,"backports.lzma;python_version<""3.3""","['numpy', 'h5py']"
+950,BeautifulSoup4,['soupsieve']
+951,pkgconfig,[]
+952,itkwidgets,[]
+953,tensorflow-data-validation,[]
+954,sobol_seq,"['numpy', 'scipy']"
+955,pytraj,[]
+956,smopy,"['matplotlib', 'pillow', 'numpy', 'six', 'ipython']"
+957,matplotlib-scalebar,['matplotlib']
+958,praw,[]
+959,math,[]
+960,numpy>=1.17,[]
+961,esda,[]
+962,xlrd>=1.0.0,[]
+963,ipympl ,"['matplotlib', 'ipywidgets', 'ipykernel']"
+964,bkcharts,"['six', 'numpy']"
+965,opencv-python<4,"['six', 'numpy']"
+966,fastai ,[]
+967,nipype,[]
+968,anytree,['six']
+969,jupyter-wysiwyg,"['notebook', 'jupyter']"
+970,econ-ark,[]
+971,notebook>=5.7.8,"['traitlets', 'ipaddress', 'jupyter-core', 'nbformat', 'Send2Trash', 'ipykernel', 'nbconvert', 'terminado', 'jinja2', 'jupyter-client', 'tornado', 'ipython-genutils', 'pyzmq', 'prometheus-client']"
+972,asgiref,[]
+973,numpy>=1.9.2,[]
+974,emoji,[]
+975,numpy>=1.16,[]
+976,google,['beautifulsoup4']
+977,nbstripout,['nbformat']
+978,unidecode,[]
+979,dask[dataframe],[]
+980,DeezyMatch,[]
+981,NumPy,[]
+982,sparqlwrapper,['rdflib']
+983,beakerx,"['ipywidgets', 'pandas', 'notebook']"
+984,fa2,[]
+985,ipyaggrid,"['ipywidgets', 'pandas', 'simplejson']"
+986,pandas>=1.1.2,"['numpy', 'python-dateutil', 'pytz']"
+987,google-resumable-media,"['crcmod', 'six']"
+988,jupyter-cjk-xelatex,['jupyter']
+989,zstandard,[]
+990,"awkward>=0.12.0,<1.0",[]
+991,sodapy,['requests']
+992,marshmallow,[]
+993,dhlab,[]
+994,myst-nb,[]
+995,lesscpy,"['ply', 'six']"
+996,cmake,[]
+997,base58,[]
+998,pydata-sphinx-theme,['sphinx']
+999,Brotli,[]
