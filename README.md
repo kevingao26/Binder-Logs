@@ -38,12 +38,16 @@ Workflow:
  - `benchmarker.sh`: Conversion of `[psuedocode] environment_testing.ipynb` into a working bash script. Runs a benchmark on a single library and saves the time into a text file called `timetaken.txt` (overwritten each time).
  - `dependency_fetch.ipynb`: Fetches all the pip dependencies in a list (each unique element once), taken from `binder-clean.json`. In reality, this was run after `bench_loop.py`, but that is irrelevant. PRODUCED: `dep_list.txt`, a dependency list.
  - `bench_loop.py`: Loops through a specified number of libraries and calls the `benchmarker.sh` shell script on each one to get a time. Saves all the times into a dataframe, with the name specified by (start, end, set), where start and end are the starting and ending positions of the `dep_list.txt`, and the set is the i'th iteration or repetition of the library being benchmarked. 
- - `benchmarks_sorter.py`: Takes all csvs that are produced from `bench_loop.py`, and combine them (repeated rows are averaged). This produces a final csv called `combined_times.csv`, which should look like:
+ - `benchmarks_sorter.py`: Takes all benchmark csvs that are produced from `bench_loop.py`, and combine them (repeated rows are averaged). This produces a final csv called `combined_times.csv`, which should look like:
  
 ![image](https://user-images.githubusercontent.com/70555752/122136203-b1d62500-cddd-11eb-853a-e24b0946797d.png)
 
+ - `depsize_sorter.py`: Takes all dependency/size csvs that are produced from `bench_loop.py`, and combine them. This produces a final csv called `combined_depsize.csv`.
+
 Overnight run times:
 ![image](https://user-images.githubusercontent.com/70555752/122448998-14940180-cf41-11eb-88b2-efa5d4bc895f.png)
+
+EDIT: Many packages uninstall unsuccessfully, and this is indicated with an "ERROR" entry in the dependencies list from the `combined_depsize.csv` column. If "ERROR" appears, this package will be removed across all CSVs in part 4.
 
 
  
