@@ -47,7 +47,7 @@ Workflow:
  - `depsize_sorter.py`: Takes all dependency/size csvs that are produced from `bench_loop.py`, and combine them. This produces a final csv called `combined_depsize.csv`.
 
 Overnight run times:
-![image](https://user-images.githubusercontent.com/70555752/122448998-14940180-cf41-11eb-88b2-efa5d4bc895f.png)
+![image](https://user-images.githubusercontent.com/70555752/123179577-6ea33400-d425-11eb-9ec5-7253b3510fcc.png)
 
 EDIT: Many packages uninstall unsuccessfully, and this is indicated with an "ERROR" entry in the dependencies list from the `combined_depsize.csv` column. If "ERROR" appears, this package will be removed across all CSVs in part 4.
 
