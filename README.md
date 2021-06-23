@@ -55,3 +55,8 @@ Sidenote: at first I was going to just use PYPI, but I saw "repository size" on 
 
 ## Part 4: Packages EDA
 Combines the data collection of parts 2 and 3 for an analysis notebook.
+
+An overview of the input files:
+ - Times -> `bench_loop.py` generates individual CSVs, and combined with `benchmarks_sorter.py` to create: `combined_times.csv`.
+ - Dependencies/Sizes -> `bench_loop.py` generates individual CSVs, and combined with `depsize_sorter.py` to create: `combined_depsize.csv`.
+ - Stats/Versions -> `pypi_scraper.ipynb` generates individual CSVs, and also combines them to create: `scraper_final.csv`.
