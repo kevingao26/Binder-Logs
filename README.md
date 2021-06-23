@@ -30,6 +30,8 @@ Dropped:
  - [3] Version history
  - [2] Time to install package
 
+### The DATA:
+ - Individually collected data will be stored in the Part 2 and 3 folders that correspond to them, in a specified format (start and end index, set # for times). The combined data `combined_times.csv`, `combined_depsize.csv`, and `scraper_final.csv` will be stored in Part 4, where they are explored and cleaned in `pentagon_EDA.ipynb` to create the quintessential dataset, `[INSERT NAME]`
 
 ## Part 2: Package benchmarking
 Workflow:
