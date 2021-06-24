@@ -67,5 +67,5 @@ An overview of the input files:
  - Dependencies/Sizes -> `bench_loop.py` generates individual CSVs, and combined with `depsize_sorter.py` to create: `combined_depsize.csv`.
  - Stats/Versions -> `pypi_scraper.ipynb` generates individual CSVs, and also combines them to create: `scraper_final.csv`.
 
- - `pentagon_conversion.ipynb` -> converts the inputs into a big combined dataset that has all columns, `[INSERT NAME]`, and a (final) dataset with columns that we want `[INSERT NAME]`.
- - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `[INSERT NAME]`.
+ - `pentagon_conversion.ipynb` -> converts the inputs into a big combined dataset that has all columns, which is then chopped into a (final) dataset with columns that we want `q_df.txt`.
+ - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `q_df.txt`.
