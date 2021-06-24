@@ -5,15 +5,33 @@ import numpy as np
 import pickle
 from datetime import datetime
 
+
+def pack2size(text_input):
+    packer_groups = text_input.split(" ")[::2]
+    result = 0
+    for s in packer_groups:
+        if s[-1] == "M":
+            multiplier = 1
+        elif s[-1] == "K":
+            multiplier = 10 ** -3
+        elif s[-1] == "B":
+            multiplier = 10 ** -3
+        elif s[-1] == "G":
+            multiplier = 10 ** 3
+        result += (float(s[:-1]) * multiplier)
+    return result
+
+
 with open("dep_list.txt", "rb") as fp:   # Unpickling
     dep_list = pickle.load(fp)
 
 timings = pd.DataFrame(columns=["library", "real", "user", "sys"])
 dependencies_sizes = pd.DataFrame(columns=["library", "dependencies"])
 
+## 5190
 start = 0
-end = 4
-set_num = 1
+end = 1000
+set_num = 2
 
 timer_index = 1
 t_list = []
@@ -25,19 +43,21 @@ for i in dep_list[start:end]:
         rc = subprocess.call("./benchmarker.sh %s %s" % (i, 1), shell=True)
         dep = open("dependencies.txt", "r").read()
         try:
-            dep_groups = re.search(r"Requires: (.+) Required-by", dep).group(1).split(", ")
+            if not ("Requires" in dep):
+                dep_groups = "ERROR"
+            else:
+                dep_groups = re.search(r"Requires: (.+) Required-by", dep).group(1).split(", ")
         except:
             dep_groups = []
 
-        pack = open("packsize.txt", "r").read()
-        try:
-            packer_groups = pack.split(i)
-            assert len(packer_groups) > 1
-            package_size = packer_groups[0].split(" ")[-2]
-        except:
-            package_size = np.nan
+        pack_before = open("packsize_before.txt", "r").read()
+        sum_before = pack2size(pack_before)
 
-        dependencies_sizes = dependencies_sizes.append({"library": i, "dependencies": dep_groups, "size": package_size}, ignore_index=True)
+        pack_after = open("packsize_after.txt", "r").read()
+        sum_after = pack2size(pack_after)
+
+
+        dependencies_sizes = dependencies_sizes.append({"library": i, "dependencies": dep_groups, "size": sum_after - sum_before, 'size_full': pack_after}, ignore_index=True)
 
 
     else:
