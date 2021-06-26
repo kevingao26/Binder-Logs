@@ -59,7 +59,7 @@ Because selenium's webdriver was used, chromedriver.exe is needed for the scrape
 Sidenote: at first I was going to just use PYPI, but I saw "repository size" on libraries.io so I scraped both. After cross checking with installed libs in the venv, it turned out that repository size was vastly different, but libraries.io is still pretty useful because often times, either libraries.io or PYPI has the github stats when the other doesn't.
 
 
-## Part 4: Packages EDA
+## Part 4: Data Sorting
 Combines the data collection of parts 2 and 3 for an analysis notebook.
 
 An overview of the input files:
@@ -68,4 +68,8 @@ An overview of the input files:
  - Stats/Versions -> `pypi_scraper.ipynb` generates individual CSVs, and also combines them to create: `scraper_final.csv`.
 
  - `pentagon_conversion.ipynb` -> converts the inputs into a big combined dataset that has all columns, which is then chopped into a (final) dataset with columns that we want `q_df.txt`.
+
+Also takes the pip columns from `binder-clean.json`, inspired from `binder-specs.sqlite`, to create a dependency table but with cleaned up dependency names now as well as updating the dependency table to contain all of a dependency's dependencies (recursive). Saves this as `dependency_table.hdf5` to be loaded in Part 5.
+
+## Part 5: Model Initiation
  - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `q_df.txt`.
