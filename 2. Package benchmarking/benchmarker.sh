@@ -26,6 +26,9 @@ fi
 # benchmarking
 exec 3>&1 4>&2
 timetaken=$( { time pip install $lib --no-cache-dir 1>&3 2>&4; } 2>&1 )
+pip uninstall $lib
+timesolo=$( { time pip install $lib --no-cache-dir 1>&3 2>&4; } 2>&1 )
+timeconstant=$( { time pip install $lib --no-cache-dir 1>&3 2>&4; } 2>&1 )
 
 # look for dependencies, total size after installation only on 1st set
 if [[ $round1 -gt 0 ]]
@@ -47,6 +50,8 @@ rm -r ve
 rm -r .cache
 
 echo $timetaken > timetaken.txt
+echo $timesolo > timesolo.txt
+echo $timeconstant > timeconstant.txt
 #echo $packsize_before
 
 if [[ $round1 -gt 0 ]]
