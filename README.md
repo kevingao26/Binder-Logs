@@ -71,6 +71,8 @@ An overview of the input files:
 
  - In `binder-clean-dependency-table.ipynb`, also takes the pip columns from `binder-clean.json`, inspired from `binder-specs.sqlite`, to create a dependency table but with cleaned up dependency names now as well as updating the dependency table to contain all of a dependency's dependencies (recursive). Saves this as `dependency_table.hdf5` to be loaded in Part 5.
 
+The folder `raw_data` contains all the individually collected data before they were combined through a python script.
+
 ## Part 5: Model Initiation
  - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `q_df.txt`. Converts `dependency_table.hdf5` into a final `dependency_table_final.txt` that factors in package dependencies. 
 
