@@ -69,7 +69,10 @@ An overview of the input files:
 
  - `pentagon_conversion.ipynb` -> converts the inputs into a big combined dataset that has all columns, which is then chopped into a (final) dataset with columns that we want `q_df.txt`.
 
-Also takes the pip columns from `binder-clean.json`, inspired from `binder-specs.sqlite`, to create a dependency table but with cleaned up dependency names now as well as updating the dependency table to contain all of a dependency's dependencies (recursive). Saves this as `dependency_table.hdf5` to be loaded in Part 5.
+ - In `binder-clean-dependency-table.ipynb`, also takes the pip columns from `binder-clean.json`, inspired from `binder-specs.sqlite`, to create a dependency table but with cleaned up dependency names now as well as updating the dependency table to contain all of a dependency's dependencies (recursive). Saves this as `dependency_table.hdf5` to be loaded in Part 5.
 
 ## Part 5: Model Initiation
- - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `q_df.txt`.
+ - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `q_df.txt`. Converts `dependency_table.hdf5` into a final `dependency_table_final.txt` that factors in package dependencies. 
+
+The Models:
+ - MODEL_naive_similarity: Similar to the LANDLORD model. Uses a parameter α as a threshold between image similarities (calculated by the cosine similarity between pandas columns) and groups recipes/images into sets for some graphs and results.
