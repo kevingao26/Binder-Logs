@@ -59,7 +59,7 @@ Because selenium's webdriver was used, chromedriver.exe is needed for the scrape
 Sidenote: at first I was going to just use PYPI, but I saw "repository size" on libraries.io so I scraped both. After cross checking with installed libs in the venv, it turned out that repository size was vastly different, but libraries.io is still pretty useful because often times, either libraries.io or PYPI has the github stats when the other doesn't.
 
 
-## Part 4: Data Sorting
+## Part 4: Data Sorting I
 Combines the data collection of parts 2 and 3 for an analysis notebook.
 
 An overview of the input files:
@@ -73,8 +73,14 @@ An overview of the input files:
 
 The folder `raw_data` contains all the individually collected data before they were combined through a python script.
 
-## Part 5: Model Initiation
- - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `q_df.txt`. Converts `dependency_table.hdf5` into a final `dependency_table_final.txt` that factors in package dependencies. 
+## Part 5: Data Sorting II & Model Initiation
+ - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `q_df.txt`. Converts `dependency_table.hdf5` into a final `dependency_table_final.txt` that factors in package dependencies, and converts `q_df.txt` to a final `pentagon_df.txt`. Also creates a simple LANDLORD model that compares size / time: MODEL_naive_similarity: Similar to the LANDLORD model. Uses a parameter α as a threshold between image similarities (calculated by the cosine similarity between pandas columns) and groups recipes/images into sets for some graphs and results.
+
+## Part 6: The Models
+ - `Model Workspace.ipynb` - sandbox for writing model scripts.
 
 The Models:
- - MODEL_naive_similarity: Similar to the LANDLORD model. Uses a parameter α as a threshold between image similarities (calculated by the cosine similarity between pandas columns) and groups recipes/images into sets for some graphs and results.
+ - Naive Model w/ no caching - ...
+ - Least Recently Used (LRU) - ...
+ - Base LANDLORD - ...
+ - LANDLORD++ - ...
