@@ -80,7 +80,7 @@ The folder `raw_data` contains all the individually collected data before they w
  - `Model Workspace.ipynb` - sandbox for writing model scripts.
  - Inputs: `binder.sqlite`, `pentagon_df.txt`, `dependency_table_final.h5`. 
 
-Dask will be used in place of pandas, as simulation times have become horrifically large.
+*Dask will be used in place of pandas, as simulation times have become horrifically large.
 
 The Models:
  - Naive Model w/ no caching - ...
