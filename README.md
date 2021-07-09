@@ -77,7 +77,7 @@ The folder `raw_data` contains all the individually collected data before they w
  - `pentagon_EDA.ipynb` -> analysis & visualizations for the final dataset, `q_df.txt`. Converts `dependency_table.hdf5` into a final `dependency_table_final.txt` that factors in package dependencies, and converts `q_df.txt` to a final `pentagon_df.txt`. Also creates a simple LANDLORD model that compares size / time: MODEL_naive_similarity: Similar to the LANDLORD model. Uses a parameter α as a threshold between image similarities (calculated by the cosine similarity between pandas columns) and groups recipes/images into sets for some graphs and results.
 
 ## Part 6: The Models
- - `Model Workspace.ipynb` - sandbox for writing model scripts. Converts the dependency table into one with just 0's and 1's.
+ - `Model Workspace.ipynb` - sandbox for writing model scripts. Converts the dependency table into one with just 0's and 1's. Uses `launches_chop.ipynb` to convert the launch dataset, and then in the notebook itself a column of dictionaries for packages & versions are generated for the launches dataset (essential for considering package versions in the model).
  - Inputs: `binder.sqlite`, `pentagon_df.txt`, `dependency_table_final.h5`. 
 
 *Scratched : Dask will be used in place of pandas to reduce runtimes.
