@@ -79,6 +79,7 @@ The folder `raw_data` contains all the individually collected data before they w
 ## Part 6: The Models
  - `Model Workspace.ipynb` - sandbox for writing model scripts. Converts the dependency table into one with just 0's and 1's. Uses `launches_chop.ipynb` to convert the launch dataset, and then in the notebook itself a column of dictionaries for packages & versions are generated for the launches dataset (essential for considering package versions in the model).
  - Inputs: `binder.sqlite`, `pentagon_df.txt`, `dependency_table_final.h5`. 
+ - Inputs after first run: `launches_with_versions.pkl`, `pentagon_df.txt`, `dependency_table_final.h5`.
 
 *Scratched : Dask will be used in place of pandas to reduce runtimes.
 
