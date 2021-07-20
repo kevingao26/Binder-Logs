@@ -95,10 +95,10 @@ The Models:
 
 
  - The txt file (`Simulation_Data.txt`) comes from a google doc with the following runs so far:
-      - Overall (1-2)
-      - Capacity (3-8)
-      - Xtra_stat1 [300, 400, 500, 600, 700], capacity 10 (9-13)
-      - Xtra_dynamic [0.5, 0.75, 1, 1.25, 1.5], capacity 10 (14-18)
+      - (1-2) Overall 
+      - (3-8) Capacity
+      - (9-13) Xtra_stat1 [300, 400, 500, 600, 700], capacity 10 
+      - (14-18) Xtra_dynamic [0.5, 0.75, 1, 1.25, 1.5], capacity 10
 
 ## Part 7: The Paper
 
