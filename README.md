@@ -94,7 +94,7 @@ The Models:
  - `Model Visualizations.ipynb` - parses a txt file of model simulations, and creates visualizations.
 
 
- - The txt file comes from a google doc with the following runs so far:
+ - The txt file (`Simulation_Data.txt`) comes from a google doc with the following runs so far:
       - Overall (1-2)
       - Capacity (3-8)
       - Xtra_stat1 [300, 400, 500, 600, 700], capacity 10 (9-13)
