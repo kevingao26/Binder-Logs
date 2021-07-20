@@ -91,4 +91,15 @@ The Models:
  - Base LANDLORD - ...
  - LANDLORD++ - ...
 
+ - `Model Visualizations.ipynb` - parses a txt file of model simulations, and creates visualizations.
+
+
+ - The txt file comes from a google doc with the following runs so far:
+      - Overall (1-2)
+      - Capacity (3-8)
+      - Xtra_stat1 [300, 400, 500, 600, 700], capacity 10 (9-13)
+      - Xtra_dynamic [0.5, 0.75, 1, 1.25, 1.5], capacity 10 (14-18)
+
+## Part 7: The Paper
+
 
