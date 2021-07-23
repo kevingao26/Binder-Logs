@@ -9,6 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
 import seaborn as sns
+
 sns.set_style("whitegrid")
 from pprint import pprint
 import sqlite3
@@ -29,9 +30,9 @@ from collections import OrderedDict
 from sklearn.preprocessing import StandardScaler
 from scipy import spatial
 
-try: # for pip >= 10
+try:  # for pip >= 10
     from pip._internal.req import parse_requirements
-except ImportError: # for pip <= 9.0.3
+except ImportError:  # for pip <= 9.0.3
     from pip.req import parse_requirements
 
 from matplotlib_venn import venn2, venn2_circles, venn2_unweighted
@@ -49,7 +50,7 @@ from bokeh.io import output_file, show
 from bokeh.resources import INLINE
 from bokeh.models import (BoxSelectTool, Circle, EdgesAndLinkedNodes, HoverTool,
                           MultiLine, NodesAndLinkedEdges, Plot, Range1d, TapTool,
-                         BoxZoomTool, ResetTool, OpenURL, CustomJS, Column, SaveTool)
+                          BoxZoomTool, ResetTool, OpenURL, CustomJS, Column, SaveTool)
 from bokeh.palettes import Spectral4
 from bokeh.plotting import figure, output_notebook
 from bokeh.models.graphs import from_networkx
@@ -57,21 +58,20 @@ from bokeh.models import TextInput, Button
 
 from scipy.spatial.distance import cosine
 
-
 # Code for hiding seaborn warnings
 import warnings
+
 warnings.filterwarnings("ignore")
 
-
 # ## Easier navigation:
-# 
+#
 # ------------------------------------
-# 
+#
 # ### 1. <a href='#setup'>Setup</a>
 # ### 2. <a href='#func'>Supporting Functions</a>
 # ------------------------------------
-# 
-# ## Models: 
+#
+# ## Models:
 # ### 3. <a href='#naive'>Naive</a>
 # ### 4. <a href='#lru'>Least Recently Used (LRU)</a>
 # ### 5. <a href='#landlord'>Basic LANDLORD</a>
@@ -82,7 +82,7 @@ warnings.filterwarnings("ignore")
 
 # <a name='setup'></a>
 # ## 1. Setup
-# 
+#
 # <br>
 
 # In[2]:
@@ -96,14 +96,12 @@ except:
     launches_df = pd.read_sql('SELECT * FROM chopped', con)
     need_launch_stuff = True
 
-
 # In[241]:
 
 
 with open('pentagon_df.txt') as f:
     reloaded_example = json.load(f)
 q_df = pd.read_json(reloaded_example)
-
 
 # In[242]:
 
@@ -113,7 +111,6 @@ for index, row in q_df.iterrows():
     dep_filtered.append([p for p in row["dependencies full"] if p not in row["dependencies drained"]])
 
 q_df["dependencies filtered"] = dep_filtered
-
 
 # In[243]:
 
@@ -126,18 +123,16 @@ for index, row in q_df.iterrows():
             v_dict[row["Version Number"][i]] = row["Version Time"][i]
     except:
         pass
-    
-    v_list.append(v_dict)
-    
-q_df["Version Dict"] = v_list
 
+    v_list.append(v_dict)
+
+q_df["Version Dict"] = v_list
 
 # In[6]:
 
 
 dep_df = pd.read_hdf('dependency_table_final.h5', 'df')
 dep_df = dep_df.rename(columns=dep_df.loc["ref"]).drop("ref")
-
 
 # ------------------------------------------------
 
@@ -146,24 +141,20 @@ dep_df = dep_df.rename(columns=dep_df.loc["ref"]).drop("ref")
 
 launches_df
 
-
 # In[116]:
 
 
 q_df.head()
-
 
 # In[229]:
 
 
 q_df.columns
 
-
 # In[118]:
 
 
 dep_df
-
 
 # In[10]:
 
@@ -171,14 +162,12 @@ dep_df
 dep_list = q_df.index.to_list()
 dep_list
 
-
 # In[11]:
 
 
 dep_binary_df = dep_df.copy(deep=True)
 dep_binary_df = dep_binary_df.astype(bool).astype(int)
 dep_binary_df
-
 
 # Some libraries don't have version data.
 
@@ -204,19 +193,20 @@ def str2date2unix(s):
 
 def series2time_dict(se, timestamp):
     ret_dict = {}
-    
+
     se_dict = se[se != 0].to_dict()
     filtered_dict = {k: se_dict[k] for k in dep_list if k in se_dict}
-    
+
     for key, value in filtered_dict.items():
         lib_dict = q_df.at[key, "Version Dict"]
-        above_time_dict = {k:v for (k,v) in lib_dict.items() if v <= timestamp}
+        above_time_dict = {k: v for (k, v) in lib_dict.items() if v <= timestamp}
         if len(above_time_dict) == 0:
             pass
         else:
             ret_dict[key] = max(above_time_dict, key=above_time_dict.get)
-    
+
     return ret_dict
+
 
 if need_launch_stuff:
     launch_version_dict = []
@@ -231,14 +221,13 @@ if need_launch_stuff:
     launches_df["Package Versions"] = launch_version_dict
     launches_df = launches_df[["timestamp", "combined_ref", "Package Versions"]]
     launches_df[["timestamp", "combined_ref", "Package Versions"]].to_pickle("launches_with_versions.pkl")
-    
 
 
 # ------------------------------------------------
 
 # <a name='func'></a>
 # ## 2. Supporting Functions
-# 
+#
 # <br>
 
 # Similarity between two recipes/columns:
@@ -249,7 +238,8 @@ if need_launch_stuff:
 def cosine_sim(c1, c2):
     return 1 - cosine(c1, c2)
 
-cosine_sim([1,1,1,1], [1,1,0,1])
+
+cosine_sim([1, 1, 1, 1], [1, 1, 0, 1])
 
 
 # Combine two recipes/columns:
@@ -269,17 +259,16 @@ def combine_col(c1, c2):
 def contains_image(c1, c2):
     # Previous command that resulted in huge runtime increase
     # set(c1[c1 == 1].index)
-    
+
     s = set(c1.to_numpy().nonzero()[0])
     image = set(c2.to_numpy().nonzero()[0])
-    
+
     is_subset = s.issubset(image)
     return is_subset
-    
 
 
 # Container class:
-# 
+#
 # "pack" and "dep" both represent packages (Dependencies are included in the packages)
 
 # In[421]:
@@ -288,13 +277,21 @@ def contains_image(c1, c2):
 class Container:
 
     # important ones are dep_version_numerical_dict, pack_list, df, size, time
-    def __init__(self, dep_version_dict, versions, launch_count):
+    def __init__(self, dep_version_dict, versions, launch_count, xtra_vers,
+                 xtra_stat1, xtra_dynamic, stat_version, heuristic_ct):
 
         self.dep_version_dict = dep_version_dict
+        self.has_vers = xtra_vers
+        self.has_stat1 = xtra_stat1
+        self.has_dynamic = xtra_dynamic
+
         self.extra_vers = 0
         self.extra_stat1 = 0
         self.extra_dynamic = 0
         self.extra_score = 0
+
+        self.stat_version = stat_version
+        self.heuristic_ct = heuristic_ct
 
         self.refactor(versions, launch_count)
 
@@ -303,17 +300,28 @@ class Container:
 
         self.pack_list = [*self.dep_version_dict]
 
-        if self.extra_dynamic:
+        if self.has_dynamic:
             q_df.loc[self.pack_list, "Dynamic Freq"] += 1
 
         self.df = q_df.loc[self.pack_list]
         self.size = np.sum(self.df["size"])
         self.time = np.sum(self.df["time"])
-        self.extra_vers = np.sum(self.df["Version Count"]) / max(self.df["Version Life"])
 
-        self.extra_stat1 = np.sum(self.df["stat1"])
+        if self.has_vers:
+            self.extra_vers = np.sum(self.df["Version Count"]) / max(self.df["Version Life"])
 
-        self.extra_dynamic = np.sum(self.df["Dynamic Freq"]) / len(self.df) / launch_count
+        if self.has_stat1:
+            if self.stat_version == "a":
+                self.extra_stat1 = np.sum(self.df["stat1"])
+
+        if self.has_dynamic:
+            self.extra_dynamic = np.sum(self.df["Dynamic Freq"]) / len(self.df) / launch_count
+
+        '''
+        if self.heuristic_ct == "A":
+            pass
+        else:
+        '''
 
         self.extra_score = self.extra_vers + self.extra_stat1 + self.extra_dynamic
 
@@ -460,7 +468,6 @@ for i in set(a).intersection(set(b)):
     print(a[i] == b[i])
 '''
 
-
 # In[428]:
 
 
@@ -469,7 +476,6 @@ testct = nl_containers[4]
 testct.add_dependencies_dict(testct.dep_version_dict)
 testct.dep_version_dict
 '''
-
 
 # In[429]:
 
@@ -481,7 +487,6 @@ b = {4:4, 1:3}
 for i in a:
     print(i)
 '''
-
 
 # Note: a lot of launches won't be used - specs only has 34400 unique refs
 
@@ -499,7 +504,7 @@ len(launches_df["combined_ref"].unique())
 def check_timestamp(timestamp):
     # get min (doesn't consider "Default" values)
     # min_time_required = min([q_df.loc[i]["Version Dict"][xp[i]] for i in xp.to_dict()])
-    
+
     min_val = sys.maxsize
     for i in xp.to_dict():
         try:
@@ -514,7 +519,7 @@ def check_timestamp(timestamp):
 
 
 # Convert a library's version to a number for comparisons. Really useful!
-# 
+#
 # - "e" represents error, if the image explicitly called for a lib and it was out of date.
 # - "i" represents that it was "I" (a package's dependency) before, so it can just be ignored.
 
@@ -524,14 +529,14 @@ def check_timestamp(timestamp):
 def version2unix(lib, version, timestamp):
     try:
         return q_df.loc[lib]["Version Dict"][version]
-    except: 
+    except:
         test_dict = q_df.loc[lib]["Version Dict"]
-        
+
         # temporary solution for libraries that don't have versions
         if len(test_dict) == 0:
             return "e"
-        
-        above_time_dict = {k:v for (k,v) in test_dict.items() if v <= timestamp}
+
+        above_time_dict = {k: v for (k, v) in test_dict.items() if v <= timestamp}
         if above_time_dict == {}:
             if version == "I":
                 return "i"
@@ -550,16 +555,16 @@ def version2unix(lib, version, timestamp):
 
 # <a name='landlord'></a>
 # ## 5. LANDLORD
-# 
+#
 # <br>
 
 # Non-Pythonic solution: An LRU cache is built by combining two data structures: a doubly linked list and a hash map. O(1) time by looking at the tail of the list, and O(1) time to access a specific element using the hashmap. All operations should be O(1) time, and O(n) space complexity.
-# 
+#
 # Python: OrderedDict, also O(1) in all operations, except for the newly added `get_total_size()`.
-# 
-# Key will be some random unique index counting upwards. 
+#
+# Key will be some random unique index counting upwards.
 # Value will be a container class object.
-# 
+#
 # https://www.geeksforgeeks.org/lru-cache-in-python-using-ordereddict/
 
 # In[347]:
@@ -567,12 +572,13 @@ def version2unix(lib, version, timestamp):
 
 class LRUCache:
 
-    def __init__(self, ct_limit: int, cache_limit, capacity: int, xtra):
+    def __init__(self, ct_limit: int, cache_limit, capacity: int, xtra, safe):
         self.cache = OrderedDict()
         self.capacity = capacity
         self.ct_limit = ct_limit
         self.cache_limit = cache_limit
         self.extra = xtra
+        self.safe = safe
 
     # cache.get(1)
     def get(self, key: int) -> int:
@@ -619,14 +625,19 @@ class LRUCache:
             self.cache.popitem(last=True)
 
     # for xtra set, removes cache item with lowest score (breaks ties with LRU)
+    # cache loops from most recently used to lr used.
     def remove_lowest(self):
+        temp_safe = self.safe
         lowest_score = 99999
         lowest_key = -1
         for key in reversed(self.cache):
-            ct_score = self.cache.get(key).extra_score
-            if ct_score < lowest_score:
-                lowest_score = ct_score
-                lowest_key = key
+            if temp_safe:
+                temp_safe -= 1
+            else:
+                ct_score = self.cache.get(key).extra_score
+                if ct_score <= lowest_score:
+                    lowest_score = ct_score
+                    lowest_key = key
         self.remove(lowest_key)
 
 
@@ -648,15 +659,14 @@ cache.remove(2)
 print(cache.cache)
 '''
 
-
 # Parameters:
-#  - kind: 
+#  - kind:
 #      - "naive" - no caching at all. new container for each launch
 #      - "lru_i" - only shares identical containers (same repo)
 #      - "lru_c" - shares a launch if its image specification is fully covered by a container
 #      - "land" - basic LANDLORD model. shares launch is fully covered or similar enough to a threshold alpha.
 #  - custom: specifies how much of the dataset to use. Only set if testing, otherwise it defaults to None for the entire dataset.
-#  - constraints: 
+#  - constraints:
 #      - ct_size: max size allowed for a single container in the cache
 #      - cache_size: max size allowed for all containers in the cache together
 #      - capacity: how many to store in cache, default is unlimited
@@ -667,21 +677,21 @@ print(cache.cache)
 #      - "land" -   True / False
 #  - alpha:
 #      - parameter for "land"
-#      
-# 
+#
+#
 # Concerns with LANDLORD:
 #      - grouping of packages based on similarity is dependent on order. for example, if B passes the threshold to be merged with A, this might cause C and modified A to not be similar enough, whereas if C was compared first, C might be merged with A.
-#      - packages that "conflict" 
-#  
-#  
+#      - packages that "conflict"
+#
+#
 # HITRATE ONLY CALCULATED FOR RECIPES WITH >= 1 LIB RIGHT NOW
-# 
+#
 # hitrate = (total libs - # of containers created) / total libs
 
 # Ideas:
-# 
+#
 # All of these are based on applying some sort of "filter" to the dataset of libraries, where we will only include libraries in a container if they pass this filter/conditions.
-# 
+#
 #  - Create a column `Version Change Avg` that keeps track of the average time between two updates for a library. If this time is below some threshold [a], then do not include this package in any containers (uninstall after use). If there are only [b] or less versions in total, then there is not enough data or the package is not updated enough and we assume it is ok -> this method only looks at times between updates, so if a package has 3 updates in 3 years and they all happened to be on the first day, then obviously we should use it (but the algo will say no). A solution to this would be to use the current time and subtract from the library's first release, which would work except we don't know which libraries went out of date and at what point.
 #  - A metric such as, `Forks` / min(1, `Total Size`), will be applied on every library. If the library doesn't meet a certain threshold, then it will not be used in the container.
 #  - To build on the previous one, we can dynamically record the proportion of times when each package has been called (and perhaps, take its version into account). Only use libraries that are above a certain proportion. Once again, this can somehow be scaled with `Total Size`, and also note that the first few (50?) launches will not create any containers because there is not enough data.
@@ -690,7 +700,7 @@ print(cache.cache)
 #  - Version avg: In q_df, create a column for the total number of versions (minus one for the first one) for each library, and the timestamp of the very first version. Then, when a container is being created, look at the minimum of its library's timestamps, and subtract that from the date we scraped the sites to get the total amount of time in between `(July 1, 2021 - min(first version of all libs))`. Our metric is **version changes / time(UNIX time-milliseconds)**, and a threshold will be used to determine if the container passes the requirements.
 #  - Popularity: We can take any combination of scraped Github statistics and make a column for this for each library. For example, stars * a + forks * b. Our metric is **sum(stat column for all libs) / sum(size for all libs)**, and a threshold will be used to determine if the container passes the requirements. These columns will be named **statx, where x is a number**.
 #  - Dynamic: Keep a column that tracks the number of times a package was called in the launch, and update after every launch. The metric is **sum(new column for all libs) / number of libs / number of launches**. A threshold will be applied, like usual.
-#  
+#
 # If they pass, keep the container. Else, build a container but do not include it in the cache for Container(). Remove from cache after updating the container for combine().
 
 # In[239]:
@@ -698,14 +708,13 @@ print(cache.cache)
 
 scrape_time = 1625122800000
 
-
 # In[333]:
 
 
 # time of first version for each library
-first_version = q_df["Version Time"].apply(lambda x: x[-1] if ((x is not None) and (len(x) > 0)) else -1) 
+first_version = q_df["Version Time"].apply(lambda x: x[-1] if ((x is not None) and (len(x) > 0)) else -1)
 # number of days since first version
-q_df["Version Life"] = (scrape_time - first_version) / (1000*60*60*24)
+q_df["Version Life"] = (scrape_time - first_version) / (1000 * 60 * 60 * 24)
 
 # number of versions
 q_df["Version Count"] = q_df["Version Time"].apply(lambda x: len(x) if (x is not None) else 0)
@@ -713,18 +722,15 @@ q_df["Version Count"] = q_df["Version Time"].apply(lambda x: len(x) if (x is not
 # Sum of stars and forks divided by their medians
 q_df["stat1"] = (q_df["Stars"] / q_df["Stars"].median()) + (q_df["Forks"] / q_df["Forks"].median())
 
-
 # In[334]:
 
 
 (q_df["Version Count"] / q_df["Version Life"])
 
-
 # In[336]:
 
 
 np.sum(q_df["Version Count"]) / min(q_df["Version Life"])
-
 
 # In[326]:
 
@@ -735,8 +741,8 @@ q_df["stat1"]
 # In[431]:
 
 
-def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0.7, xtra_vers=False, xtra_stat1=False,
-             xtra_dynamic=False):
+def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0.7, xtra_vers=0, xtra_stat1=0,
+             xtra_dynamic=0, stat_version="", heuristic_ct="", heuristic_land="", cache_safe=0):
     '''
     if vers_alpha:
         # Average time between repo versions for a repo. There are two values that can be changed/optimized.
@@ -754,6 +760,21 @@ def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0
 
     xtra = xtra_vers or xtra_stat1 or xtra_dynamic
 
+    xtra_count = 0
+    if xtra_vers:
+        xtra_count += 1
+    if xtra_stat1:
+        xtra_count += 1
+    else:
+        stat_version = ""
+    if xtra_dynamic:
+        xtra_count += 1
+
+    if xtra_count < 2:
+        heuristic_ct = ""
+    if xtra_count < 1:
+        heuristic_land = ""
+
     q_df["Dynamic Freq"] = 0
 
     if kind not in ["naive", "lru_i", "lru_c", "land"]:
@@ -767,15 +788,18 @@ def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0
         cache_limit = False
 
     start = time.time()
-    cache = LRUCache(ct_limit, cache_limit, capacity, xtra)
+    cache = LRUCache(ct_limit, cache_limit, capacity, xtra, cache_safe)
     count = 0
     ct_count = 0
     containers = []
 
+    if kind != "land":
+        heuristic_land = ""
+
     # version diff in matplotlib between 7714 and 7719
 
     if custom == "timeit":
-        df = launches_df[0:500]
+        df = launches_df[0:2000]
     elif custom == "big":
         df = launches_df[0:500000]
     elif custom == "tests":
@@ -840,7 +864,8 @@ def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0
             need_container = False
         if need_container:
             ct_count += 1
-            new_ct = Container(df_versions_dict, versions, counter)
+            new_ct = Container(df_versions_dict, versions, counter, xtra_vers, xtra_stat1, xtra_dynamic,
+                               stat_version, heuristic_ct)
             containers.append(new_ct)
             if kind != "naive":
                 # cache key will be ct_count(arbitrary) and value will be container
@@ -855,39 +880,46 @@ def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0
 
     end = time.time()
     time_taken = end - start
-    return time_taken, count, ct_count, containers, total_size, total_time, hitrate, cache
+    return time_taken, count, ct_count, containers, total_size, total_time, hitrate, cache, heuristic_ct, heuristic_land, stat_version
     return time_taken, count, containers, 1, 1
 
+
+rs = MODEL_nl('lru_c', 1, [-1, -1, 4], True, 0.7, 0, 0, 0, "a", "A", "A", 0)
+rs[0], rs[1], rs[2], rs[4], rs[5], rs[6]
 
 
 def to_dataframe(l1, l2, hue):
     return pd.DataFrame(
-    {'x': l1,
-     'y': l2,
-     'hue': hue
-    })
+        {'x': l1,
+         'y': l2,
+         'hue': hue
+         })
+
 
 def to_dataframe(l1, l2, l3, hue):
     return pd.DataFrame(
-    {'x': l1,
-     'y': l2,
-     'z': l3,
-     'hue': hue
-    })
+        {'x': l1,
+         'y': l2,
+         'z': l3,
+         'hue': hue
+         })
 
 
-def RESULT_model_nl(models, custom, version, constraints, alpha, xtra_vers, xtra_stat1, xtra_dynamic):
+def RESULT_model_nl(models, custom, version, constraints, alpha, xtra_vers, xtra_stat1, xtra_dynamic,
+                    stat_version, heuristic_ct, heuristic_land, cache_safe):
     if models == "all":
         models = ["naive", "lru_i", "lru_c", "land"]
     elif models == "set":
         models = ["lru_i", "lru_c", "land"]
 
     total_size, total_time, hitrate, cache_size, names, timeit = [], [], [], [], [], []
+    h_ct, h_land, s_version = [], [], []
 
     for model in models:
         start = time.time()
 
-        temp = MODEL_nl(model, custom, constraints, version, alpha, xtra_vers, xtra_stat1, xtra_dynamic)
+        temp = MODEL_nl(model, custom, constraints, version, alpha, xtra_vers, xtra_stat1, xtra_dynamic,
+                        stat_version, heuristic_ct, heuristic_land, cache_safe)
 
         total_size.append(temp[4])
         total_time.append(temp[5])
@@ -899,25 +931,48 @@ def RESULT_model_nl(models, custom, version, constraints, alpha, xtra_vers, xtra
 
         names.append(model)
 
-    return models, custom, constraints, version, alpha, xtra_vers, xtra_stat1, xtra_dynamic, total_size, total_time, hitrate, cache_size, names, timeit
+        h_ct.append(temp[8])
+        h_land.append(temp[9])
+        s_version.append(temp[10])
+
+    return models, custom, constraints, version, alpha, xtra_vers, xtra_stat1, xtra_dynamic, total_size, total_time, hitrate, cache_size, names, timeit, s_version, h_ct, h_land, cache_safe
 
 
+for safe in [1, 2, 3, 4, 5, 6]:
+    for cap in np.arange(5, 30, 6):
 
-for cap in [1,2,3,5,8,10,15]:
-    for vers in [5,6,7,8,9,10,11]:
-        results = RESULT_model_nl(["lru_i", "lru_c"], "tests", True, [-1, -1, cap], 0.7, vers, False, False)
+        results = RESULT_model_nl(["lru_c"], "tests", True, [-1, -1, cap], 0.7, 0, 1, 0,
+                                  "a", "A", "A", safe)
 
         outF = open("model_results.txt", "a")
         for i in results:
-          # write line to output file
-          outF.write(str(i))
-          outF.write("\n")
+            # write line to output file
+            outF.write(str(i))
+            outF.write("\n")
 
         outF.write("\n")
         outF.write("----------------------------")
         outF.write("\n")
         outF.close()
-        
-        print(cap, vers)
+
+        print(cap, safe)
+
+'''
+for ct_size in np.arange(50,800,50):
+    results = RESULT_model_nl(["lru_c"], "tests", True, [ct_size, -1, -1], 0.7, 1, 0, 0)
+
+    outF = open("model_results.txt", "a")
+    for i in results:
+      # write line to output file
+      outF.write(str(i))
+      outF.write("\n")
+
+    outF.write("\n")
+    outF.write("----------------------------")
+    outF.write("\n")
+    outF.close()
+
+    print(ct_size)
+'''
 
 
