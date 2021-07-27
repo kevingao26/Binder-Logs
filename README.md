@@ -94,11 +94,14 @@ The Models:
  - `Model Visualizations.ipynb` - parses a txt file of model simulations, and creates visualizations.
 
 
- - The txt file (`Simulation_Data.txt`) comes from a google doc with the following runs so far:
-      - (1-2) Overall 
-      - (3-8) Capacity
-      - (9-13) Xtra_stat1 [300, 400, 500, 600, 700], capacity 10 
-      - (14-18) Xtra_dynamic [0.5, 0.75, 1, 1.25, 1.5], capacity 10
+ - The txt file (`Simulation_Data[x].txt`) comes from a google doc with the following runs so far:
+      - (1) i=14, excludes heuristic parameters and after
+      - (2-4) i=18, excludes lru parameter and after
+      - (3-?) i=20, ?
+
+
+ - Parameters:
+
 
 ## Part 7: The Paper
 
