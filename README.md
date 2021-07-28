@@ -100,8 +100,23 @@ The Models:
       - (3-?) i=20, ?
 
 
- - Parameters:
+ - Parameters (in order):
+      - kind (str): one of [naive, lru_i, lru_c, land] representing the model type to use
+      - custom (int): how many launches to use as input data. [1, "timeit", "big", "tests", None] for 200, 2000, 500000, 811000, 2mil launches to use
+      - constraints (list of ints): 3 item list with -1 for no constraint, otherwise the specified constraint value. In order, the 3 constraints represent container size limit, cache size limit, and capacity.
+      - versions (bool): whether to use package versions or not. Keep this to True always unless testing the parameter itself
+      - alpha (float): alpha value for landlord
+      - xtra_vers (float): input scaling factor
+      - xtra_stat1 (float): input scaling factor
+      - xtra_dynamic (float): input scaling factor
+      - stat_version (str): lower-case single letter input representing the metric to use for the xtra_stat1 parameter
+      - heuristic_ct (str): upper-case single letter input representing the metric to use for combining xtra parameters in the cache. the lowest score is dropped out of the cache
+      - heuristic_land (str): upper-case single letter input representing the metric to use for combining xtra parameters before merging with similarity score for landlord. then, it is compared with alpha
+      - cache_safe (int): represents how much of LRUCache is "safe" from being removed by xtra parameters
+      - 
 
+
+kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0.7, xtra_vers=0, xtra_stat1=0, xtra_dynamic=0, stat_version="", heuristic_ct="", heuristic_land="", cache_safe=0) 
 
 ## Part 7: The Paper
 
