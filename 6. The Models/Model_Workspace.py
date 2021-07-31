@@ -57,6 +57,7 @@ from bokeh.models.graphs import from_networkx
 from bokeh.models import TextInput, Button
 
 from scipy.spatial.distance import cosine
+import scipy.stats as ss
 
 # Code for hiding seaborn warnings
 import warnings
@@ -278,16 +279,20 @@ class Container:
 
     # important ones are dep_version_numerical_dict, pack_list, df, size, time
     def __init__(self, dep_version_dict, versions, launch_count, xtra_vers,
-                 xtra_stat1, xtra_dynamic, stat_version, heuristic_ct):
+                 xtra_stat1, xtra_dynamic, stat_version, heuristic_ct, xtra_size, xtra_time):
 
         self.dep_version_dict = dep_version_dict
         self.has_vers = xtra_vers
         self.has_stat1 = xtra_stat1
         self.has_dynamic = xtra_dynamic
+        self.has_size = xtra_size
+        self.has_time = xtra_time
 
         self.extra_vers = 0
         self.extra_stat1 = 0
         self.extra_dynamic = 0
+        self.extra_size = 0
+        self.extra_time = 0
         self.extra_score = 0
 
         self.stat_version = stat_version
@@ -304,26 +309,38 @@ class Container:
             q_df.loc[self.pack_list, "Dynamic Freq"] += 1
 
         self.df = q_df.loc[self.pack_list]
+        self.df_size = len(self.df)
         self.size = np.sum(self.df["size"])
         self.time = np.sum(self.df["time"])
 
         if self.has_vers:
-            self.extra_vers = np.sum(self.df["Version Count"]) / max(self.df["Version Life"])
+            self.extra_vers = np.sum(self.df["Version Count"]) / self.df_size / max(self.df["Version Life"])
 
         if self.has_stat1:
             if self.stat_version == "a":
-                self.extra_stat1 = np.sum(self.df["stat1"])
+                self.extra_stat1 = np.sum(self.df["stat1"]) / self.df_size
+            elif self.stat_version == "b":
+                self.extra_stat1 = np.sum(self.df["stat1"]) / self.size
 
         if self.has_dynamic:
             self.extra_dynamic = np.sum(self.df["Dynamic Freq"]) / len(self.df) / launch_count
 
-        '''
+        if self.has_size:
+            self.extra_size = self.size
+
+        if self.has_time:
+            self.extra_time = self.time
+
         if self.heuristic_ct == "A":
+            if launch_count >= 100000:
+                self.extra_score = self.has_vers * self.extra_vers / 0.3 + self.has_stat1 * self.extra_stat1 / 2100 + self.has_dynamic * self.extra_dynamic / 0.01
+            else:
+                self.extra_score = self.has_vers * self.extra_vers / 0.3 + self.has_stat1 * self.extra_stat1 / 2100 + 0.01
+        elif self.heuristic_ct == "B":
+            # cacheRank
             pass
         else:
-        '''
-
-        self.extra_score = self.extra_vers + self.extra_stat1 + self.extra_dynamic
+            self.extra_score = self.extra_vers + self.extra_stat1 + self.extra_dynamic
 
         '''
         if self.p_switch:
@@ -572,13 +589,21 @@ def version2unix(lib, version, timestamp):
 
 class LRUCache:
 
-    def __init__(self, ct_limit: int, cache_limit, capacity: int, xtra, safe):
+    def __init__(self, ct_limit: int, cache_limit, capacity: int, xtra, safe, heuristic_ct,
+                 xtra_vers, xtra_stat1, xtra_dynamic, lru_combine, xtra_size, xtra_time):
         self.cache = OrderedDict()
         self.capacity = capacity
         self.ct_limit = ct_limit
         self.cache_limit = cache_limit
         self.extra = xtra
         self.safe = safe
+        self.heuristic_ct = heuristic_ct
+        self.mult_extra_vers = xtra_vers
+        self.mult_extra_stat1 = xtra_stat1
+        self.mult_extra_dynamic = xtra_dynamic
+        self.lru_combine = lru_combine
+        self.mult_extra_size = xtra_size
+        self.mult_extra_time = xtra_time
 
     # cache.get(1)
     def get(self, key: int) -> int:
@@ -603,7 +628,7 @@ class LRUCache:
         self.cache.move_to_end(key)
         if (len(self.cache) > self.capacity) or (
                 (self.cache_limit) and (self.get_total_size() > self.cache_limit)):
-            if self.extra:
+            if self.extra and (self.safe < self.capacity):
                 self.remove_lowest()
             else:
                 self.cache.popitem(last=False)
@@ -626,19 +651,79 @@ class LRUCache:
 
     # for xtra set, removes cache item with lowest score (breaks ties with LRU)
     # cache loops from most recently used to lr used.
+    # side note: if we want lru to be considered for 1 xtra being used then just the first if for everything
     def remove_lowest(self):
         temp_safe = self.safe
         lowest_score = 99999
         lowest_key = -1
-        for key in reversed(self.cache):
-            if temp_safe:
-                temp_safe -= 1
-            else:
-                ct_score = self.cache.get(key).extra_score
-                if ct_score <= lowest_score:
-                    lowest_score = ct_score
-                    lowest_key = key
-        self.remove(lowest_key)
+
+        # cacheRank
+        # A for dumb combine
+        # B for basic cacherank
+        # C for B with standardization
+
+        temp_not_safe = self.capacity - self.safe
+
+        raw_keys, raw_vers, raw_stat, raw_dyn = [], [], [], []
+        raw_size, raw_time = [], []
+        lru_rank = []
+
+        lru_count = 1
+
+        # start from least recently used so tiebreak is on least first
+        for key in self.cache:
+            if temp_not_safe > 0:
+                temp_not_safe -= 1
+                ct = self.cache.get(key)
+                raw_keys.append(key)
+                raw_vers.append(ct.extra_vers)
+                raw_stat.append(ct.extra_stat1)
+                raw_dyn.append(ct.extra_dynamic)
+                raw_size.append(ct.extra_size)
+                raw_time.append(ct.extra_time)
+                lru_rank.append(lru_count)
+                lru_count += 1
+
+        if self.heuristic_ct == "A":
+            a_vers = np.array(raw_vers)
+            a_stat = np.array(raw_stat)
+            a_dyn = np.array(raw_dyn)
+            a_size = np.array(raw_size)
+            a_time = np.array(raw_time)
+        else:
+            l_vers = ss.rankdata(raw_vers)
+            l_stat = ss.rankdata(raw_stat)
+            l_dyn = ss.rankdata(raw_dyn)
+            l_size = ss.rankdata(raw_size)
+            l_time = ss.rankdata(raw_time)
+
+            a_vers = np.array(l_vers)
+            a_stat = np.array(l_stat)
+            a_dyn = np.array(l_dyn)
+            a_size = np.array(l_size)
+            a_time = np.array(l_time)
+
+        def standardize_a(l):
+            return (l - np.mean(l)) / np.std(l)
+
+        if self.heuristic_ct == "C":
+            a_vers = standardize_a(a_vers)
+            a_stat = standardize_a(a_stat)
+            a_dyn = a_dyn
+            a_size = standardize_a(a_size)
+            a_time = standardize_a(a_time)
+
+        l_score = a_vers * self.mult_extra_vers + a_stat * self.mult_extra_stat1 + a_dyn * self.mult_extra_dynamic
+        l_score += a_size * self.mult_extra_size + a_time * self.mult_extra_time
+
+        if self.lru_combine:
+            l_score += np.array(lru_rank)
+
+        l_score = l_score.tolist()
+
+        min_key = raw_keys[l_score.index(min(l_score))]
+
+        self.remove(min_key)
 
 
 # In[430]:
@@ -742,7 +827,8 @@ q_df["stat1"]
 
 
 def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0.7, xtra_vers=0, xtra_stat1=0,
-             xtra_dynamic=0, stat_version="", heuristic_ct="", heuristic_land="", cache_safe=0):
+             xtra_dynamic=0, stat_version="", heuristic_ct="", heuristic_land="", cache_safe=0, lru_combine=True,
+             xtra_size=0, xtra_time=0):
     '''
     if vers_alpha:
         # Average time between repo versions for a repo. There are two values that can be changed/optimized.
@@ -788,7 +874,8 @@ def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0
         cache_limit = False
 
     start = time.time()
-    cache = LRUCache(ct_limit, cache_limit, capacity, xtra, cache_safe)
+    cache = LRUCache(ct_limit, cache_limit, capacity, xtra, cache_safe, heuristic_ct,
+                     xtra_vers, xtra_stat1, xtra_dynamic, lru_combine, xtra_size, xtra_time)
     count = 0
     ct_count = 0
     containers = []
@@ -865,7 +952,7 @@ def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0
         if need_container:
             ct_count += 1
             new_ct = Container(df_versions_dict, versions, counter, xtra_vers, xtra_stat1, xtra_dynamic,
-                               stat_version, heuristic_ct)
+                               stat_version, heuristic_ct, xtra_size, xtra_time)
             containers.append(new_ct)
             if kind != "naive":
                 # cache key will be ct_count(arbitrary) and value will be container
@@ -882,10 +969,6 @@ def MODEL_nl(kind, custom=None, constraints=[-1, -1, -1], versions=True, alpha=0
     time_taken = end - start
     return time_taken, count, ct_count, containers, total_size, total_time, hitrate, cache, heuristic_ct, heuristic_land, stat_version
     return time_taken, count, containers, 1, 1
-
-
-rs = MODEL_nl('lru_c', 1, [-1, -1, 4], True, 0.7, 0, 0, 0, "a", "A", "A", 0)
-rs[0], rs[1], rs[2], rs[4], rs[5], rs[6]
 
 
 def to_dataframe(l1, l2, hue):
@@ -905,21 +988,20 @@ def to_dataframe(l1, l2, l3, hue):
          })
 
 
-def RESULT_model_nl(models, custom, version, constraints, alpha, xtra_vers, xtra_stat1, xtra_dynamic,
-                    stat_version, heuristic_ct, heuristic_land, cache_safe):
+def RESULT_model_nl(models, custom, version, constraints, alpha, xtra_vers, xtra_stat1, xtra_dynamic, stat_version,
+                    heuristic_ct, heuristic_land, cache_safe, lru_combine, xtra_size, xtra_time):
     if models == "all":
         models = ["naive", "lru_i", "lru_c", "land"]
     elif models == "set":
         models = ["lru_i", "lru_c", "land"]
 
     total_size, total_time, hitrate, cache_size, names, timeit = [], [], [], [], [], []
-    h_ct, h_land, s_version = [], [], []
 
     for model in models:
         start = time.time()
 
-        temp = MODEL_nl(model, custom, constraints, version, alpha, xtra_vers, xtra_stat1, xtra_dynamic,
-                        stat_version, heuristic_ct, heuristic_land, cache_safe)
+        temp = MODEL_nl(model, custom, constraints, version, alpha, xtra_vers, xtra_stat1, xtra_dynamic, lru_combine,
+                        xtra_size, xtra_time)
 
         total_size.append(temp[4])
         total_time.append(temp[5])
@@ -931,23 +1013,18 @@ def RESULT_model_nl(models, custom, version, constraints, alpha, xtra_vers, xtra
 
         names.append(model)
 
-        h_ct.append(temp[8])
-        h_land.append(temp[9])
-        s_version.append(temp[10])
-
-    return models, custom, constraints, version, alpha, xtra_vers, xtra_stat1, xtra_dynamic, total_size, total_time, hitrate, cache_size, names, timeit, s_version, h_ct, h_land, cache_safe
+    return models, custom, constraints, version, alpha, xtra_vers, xtra_stat1, xtra_dynamic, total_size, total_time, hitrate, cache_size, names, timeit, stat_version, heuristic_ct, heuristic_land, cache_safe, lru_combine, xtra_size, xtra_time
 
 
-for safe in [1, 2, 3, 4, 5, 6]:
-    for cap in np.arange(5, 30, 6):
-
-        results = RESULT_model_nl(["lru_c"], "tests", True, [-1, -1, cap], 0.7, 0, 1, 0,
-                                  "a", "A", "A", safe)
+for j in [5, 10, 15, 25, 35, 50]:
+    for k in [0, j // 5, 2 * j // 5, 3 * j // 5, 4 * j // 5]:
+        results = RESULT_model_nl(["lru_c"], "tests", True, [-1, -1, j], 0.7, 0, 1, 0,
+                                  "a", "C", "A", k, True, 1, 0)
 
         outF = open("model_results.txt", "a")
-        for i in results:
+        for r in results:
             # write line to output file
-            outF.write(str(i))
+            outF.write(str(r))
             outF.write("\n")
 
         outF.write("\n")
@@ -955,7 +1032,43 @@ for safe in [1, 2, 3, 4, 5, 6]:
         outF.write("\n")
         outF.close()
 
-        print(cap, safe)
+        print(j, k)
+
+for j in [5, 10, 15, 25, 35, 50]:
+    for k in [0, j // 5, 2 * j // 5, 3 * j // 5, 4 * j // 5]:
+        results = RESULT_model_nl(["lru_c"], "tests", True, [-1, -1, j], 0.7, 0, 1, 0,
+                                  "b", "C", "A", k, True, 0, 1)
+
+        outF = open("model_results.txt", "a")
+        for r in results:
+            # write line to output file
+            outF.write(str(r))
+            outF.write("\n")
+
+        outF.write("\n")
+        outF.write("----------------------------")
+        outF.write("\n")
+        outF.close()
+
+        print(j, k)
+
+for j in [5, 10, 15, 25, 35, 50]:
+    for k in [0, j // 5, 2 * j // 5, 3 * j // 5, 4 * j // 5]:
+        results = RESULT_model_nl(["lru_c"], "tests", True, [-1, -1, j], 0.7, 0, 0, 1,
+                                  "b", "C", "A", k, True, 0, 0)
+
+        outF = open("model_results.txt", "a")
+        for r in results:
+            # write line to output file
+            outF.write(str(r))
+            outF.write("\n")
+
+        outF.write("\n")
+        outF.write("----------------------------")
+        outF.write("\n")
+        outF.close()
+
+        print(j, k)
 
 '''
 for ct_size in np.arange(50,800,50):
