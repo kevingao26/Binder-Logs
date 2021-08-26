@@ -95,9 +95,9 @@ The Models:
 
 
  - The txt file (`Simulation_Data[x].txt`) comes from a google doc with the following runs so far:
-      - (1) i=14, excludes heuristic parameters and after
-      - (2-4) i=18, excludes lru parameter and after
-      - (3-?) i=20, ?
+      - (1-7) outdated
+      - (8-9) capacity
+      - (10-12) cache size
 
 
  - Parameters (in order):
